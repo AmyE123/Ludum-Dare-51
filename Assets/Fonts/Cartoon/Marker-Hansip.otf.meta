@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 6312792dba6c60645a479dedbcc31427
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Hansip
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 104548f6f321632418214250b610ca8d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
