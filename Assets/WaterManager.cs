@@ -20,6 +20,12 @@ public class WaterManager : MonoBehaviour
     [SerializeField]
     private float _timeUntilRise;
 
+    //[SerializeField]
+    //private GameObject _VFXContainer;
+
+    [SerializeField]
+    private ParticleSystem[] _splashVFX;
+
     public int WaterHeight => _waterHeight;
 
     public float WaterHeightExact => _waterTransform.position.y;
@@ -33,6 +39,12 @@ public class WaterManager : MonoBehaviour
     {
         _timeUntilRise = WATER_RISING_TIME;
         _waterHeight = 0;
+        //_VFXContainer.SetActive(false);
+
+        foreach (ParticleSystem particle in _splashVFX)
+        {
+            particle.Stop();
+        }
     }
 
     private void Update()
@@ -49,6 +61,22 @@ public class WaterManager : MonoBehaviour
         }   
 
         UpdateWaterTimer();
+
+        if (_isMoving)
+        {
+            foreach (ParticleSystem particle in _splashVFX)
+            {
+                particle.Emit(1);
+                particle.Play();
+            }
+        }
+        else
+        {
+            foreach (ParticleSystem particle in _splashVFX)
+            {
+                particle.Stop();
+            }
+        }
     }
 
     private void UpdateWaterTimer()
@@ -64,7 +92,7 @@ public class WaterManager : MonoBehaviour
 
     private void SetNewWaterLevel()
     {
-        _isMoving = true;
+        _isMoving = true;        
         _waterTransform.DOLocalMoveY(_waterHeight, _waterRiseDelay).OnComplete(() => 
         {
             _isMoving = false;

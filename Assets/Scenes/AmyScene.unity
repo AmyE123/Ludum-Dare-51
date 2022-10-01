@@ -5780,6 +5780,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396702647}
   m_CullTransparentMesh: 1
+--- !u!198 &1449675476 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1449675476, guid: 498102aaf611ac34398be9b0697c7187,
+    type: 3}
+  m_PrefabInstance: {fileID: 6193110494106541156}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1510961977
 GameObject:
   m_ObjectHideFlags: 0
@@ -7156,6 +7162,12 @@ MonoBehaviour:
     ease: 6
     doAlpha: 0
     alpha: 0
+--- !u!198 &1625714013 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1625714013, guid: 498102aaf611ac34398be9b0697c7187,
+    type: 3}
+  m_PrefabInstance: {fileID: 6193110494106541156}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1738487852 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6193110495590474824, guid: 498102aaf611ac34398be9b0697c7187,
@@ -9368,6 +9380,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1449675476, guid: 498102aaf611ac34398be9b0697c7187, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449675476, guid: 498102aaf611ac34398be9b0697c7187, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449675476, guid: 498102aaf611ac34398be9b0697c7187, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449675476, guid: 498102aaf611ac34398be9b0697c7187, type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449675476, guid: 498102aaf611ac34398be9b0697c7187, type: 3}
+      propertyPath: useUnscaledTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449675476, guid: 498102aaf611ac34398be9b0697c7187, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625714013, guid: 498102aaf611ac34398be9b0697c7187, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625714013, guid: 498102aaf611ac34398be9b0697c7187, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625714013, guid: 498102aaf611ac34398be9b0697c7187, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625714013, guid: 498102aaf611ac34398be9b0697c7187, type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625714013, guid: 498102aaf611ac34398be9b0697c7187, type: 3}
+      propertyPath: useUnscaledTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625714013, guid: 498102aaf611ac34398be9b0697c7187, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6193110494209703857, guid: 498102aaf611ac34398be9b0697c7187,
         type: 3}
       propertyPath: m_Mesh
@@ -9386,8 +9446,23 @@ PrefabInstance:
     - target: {fileID: 6193110494209703869, guid: 498102aaf611ac34398be9b0697c7187,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 820
+      value: 841
       objectReference: {fileID: 0}
+    - target: {fileID: 6193110495590474824, guid: 498102aaf611ac34398be9b0697c7187,
+        type: 3}
+      propertyPath: _splashVFX.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193110495590474824, guid: 498102aaf611ac34398be9b0697c7187,
+        type: 3}
+      propertyPath: _splashVFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 1625714013}
+    - target: {fileID: 6193110495590474824, guid: 498102aaf611ac34398be9b0697c7187,
+        type: 3}
+      propertyPath: _splashVFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 1449675476}
     - target: {fileID: 6193110495590474825, guid: 498102aaf611ac34398be9b0697c7187,
         type: 3}
       propertyPath: m_RootOrder
