@@ -23,7 +23,7 @@ public class WaterManager : MonoBehaviour
     public float TimeUntilRise => Mathf.Clamp(_timeUntilRise, 0, WATER_RISING_TIME);
 
     [SerializeField]
-    private ParticleSystem[] _splashVFX;
+    private ParticleController[] _splashVFX;
 
     public int WaterHeight => _waterHeight;
 
@@ -40,9 +40,9 @@ public class WaterManager : MonoBehaviour
         _waterHeight = 0;
         //_VFXContainer.SetActive(false);
 
-        foreach (ParticleSystem particle in _splashVFX)
+        foreach (ParticleController particle in _splashVFX)
         {
-            particle.Stop();
+            particle.isEmitting = false;
         }
     }
 
@@ -52,34 +52,21 @@ public class WaterManager : MonoBehaviour
         {
             _timeUntilRise = WATER_RISING_TIME;
             IncrementWaterLevel();
-        }
-        if (Input.GetKeyDown(KeyCode.KeypadMinus))
-        {
-            _timeUntilRise = WATER_RISING_TIME;
-            DecrementWaterLevel();
-        }   
+        } 
 
         UpdateWaterTimer();
 
-        if (_isMoving)
+        foreach (ParticleController particle in _splashVFX)
         {
-            foreach (ParticleSystem particle in _splashVFX)
-            {
-                particle.Emit(1);
-                particle.Play();
-            }
-        }
-        else
-        {
-            foreach (ParticleSystem particle in _splashVFX)
-            {
-                particle.Stop();
-            }
+            particle.isEmitting = _isMoving;
         }
     }
 
     private void UpdateWaterTimer()
     {
+        if (PauseMenu.IsGamePaused)
+            return;
+
         _timeUntilRise -= Time.deltaTime;
 
         if (_timeUntilRise <= 0 && RollingLog.NumberRolling == 0)
@@ -91,7 +78,6 @@ public class WaterManager : MonoBehaviour
 
     private void SetNewWaterLevel()
     {
-
         _isMoving = true;        
         _waterTransform.DOLocalMoveY(_waterHeight, _waterRiseDelay).OnComplete(() => 
         {
