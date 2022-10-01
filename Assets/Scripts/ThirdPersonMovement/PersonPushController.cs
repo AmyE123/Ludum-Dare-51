@@ -102,6 +102,7 @@ namespace ThirdPersonMovement
                     return;
                 }
 
+
                 Vector3 dirToPush = -hit.normal;
                 dirToPush.y = 0;
                 dirToPush.Normalize();
