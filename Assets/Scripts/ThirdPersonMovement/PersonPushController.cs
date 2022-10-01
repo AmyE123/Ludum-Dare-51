@@ -102,6 +102,7 @@ namespace ThirdPersonMovement
                     return;
                 }
 
+
                 Vector3 dirToPush = -hit.normal;
                 dirToPush.y = 0;
                 dirToPush.Normalize();
@@ -147,7 +148,7 @@ namespace ThirdPersonMovement
             _isLockedIn = false;
             Vector3 direction = GetPushDirection();
 
-            if (_activePushable.ShouldFall())
+            if (_activePushable.CheckIfShouldFall())
             {
                 CancelPushing();
                 return;

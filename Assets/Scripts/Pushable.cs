@@ -8,27 +8,45 @@ public class Pushable : MonoBehaviour
     protected enum PushDirection { None, Forward, Right, Back, Left }
 
     [SerializeField]
-    private float _pushSpeed = 1;
+    protected float _pushSpeed = 1;
 
     [SerializeField]
-    private Collider _collider;
+    protected Collider _collider;
 
     [SerializeField]
     private float _fallSpeed = 5;
 
+    [SerializeField]
+    private float _floatSpeed = 5;
+
+    protected virtual bool CanMoveLeftRight => true;
+    protected virtual bool CanMoveForwardBack => true;
+
     private bool _isFalling;
+    private bool _isFloating;
     private float _fallHeight;
     private Vector3 _velocity;
 
+    private WaterManager _water;
+
     public bool IsFalling => _isFalling;
 
-    public bool IsInWater => false;
+    private bool _isInWater;
+
+    public bool IsInWater => _isInWater;
+
+    private void Start()
+    {
+        _water = FindObjectOfType<WaterManager>();
+        CheckIfShouldFall();
+    }
 
     private void Update()
     {
         if (_isFalling)
         {
             _velocity += new Vector3(0, -_fallSpeed, 0) * Time.deltaTime;
+
             transform.position += _velocity * Time.deltaTime;
 
             if (transform.position.y < _fallHeight)
@@ -36,6 +54,23 @@ public class Pushable : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, _fallHeight, transform.position.z);
                 _isFalling = false;
             }
+        }
+
+        float topOfObject = transform.position.y + _collider.bounds.extents.y;
+        bool isUnderwater = _water.WaterHeightExact > topOfObject - 0.1f;
+
+        if (isUnderwater == false && _isInWater == true)
+        {
+            _isInWater = false;
+            CheckIfShouldFall();
+        }
+
+        if (isUnderwater)
+        {
+            float yPos = _water.WaterHeightExact - _collider.bounds.extents.y + 0.1f;
+            transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
+            _isInWater = true;
+            _isFalling = false;
         }
     }
 
@@ -50,7 +85,7 @@ public class Pushable : MonoBehaviour
         StartCoroutine(PushRoutine(direction, player));
     }
 
-    public bool ShouldFall()
+    public bool CheckIfShouldFall()
     {
         Bounds bounds = _collider.bounds;
         List<Vector3> hitOffsets = new List<Vector3>();
@@ -58,16 +93,16 @@ public class Pushable : MonoBehaviour
         float startX = bounds.extents.x - 0.5f;
         float startY = bounds.extents.z - 0.5f;
 
-        for (int x=0; x<bounds.extents.x * 2; x++)
+        for (int x=0; x<Mathf.RoundToInt(bounds.extents.x * 2); x++)
         {
-            for (int y=0; y<bounds.extents.z * 2; y++)
+            for (int y=0; y<Mathf.RoundToInt(bounds.extents.z * 2); y++)
             {
                 hitOffsets.Add(new Vector3(x-startX, 0, y-startY));
             }
         }
 
         Vector3 mid = transform.position;
-        mid -= new Vector3(0, bounds.extents.y, 0);
+        mid -= new Vector3(0, bounds.extents.y-0.1f, 0);
         
         float highestPoint = -10f;
 
@@ -75,7 +110,7 @@ public class Pushable : MonoBehaviour
         {
             if (Physics.Raycast(mid + v, Vector3.down, out RaycastHit hit, 10))
             {
-                if (hit.distance < 0.01f)
+                if (hit.distance < 0.11f)
                     return false;
                 
                 highestPoint = Mathf.Max(highestPoint, hit.point.y);
@@ -95,12 +130,15 @@ public class Pushable : MonoBehaviour
 
         if (pushDir == PushDirection.Left || pushDir == PushDirection.Right)
         {
+            if (CanMoveLeftRight == false)
+                return false;
+
             float startX = bounds.extents.z - 0.5f;
             float startY = bounds.extents.y - 0.5f;
 
-            for (int x=0; x<bounds.extents.z * 2; x++)
+            for (int x=0; x<Mathf.RoundToInt(bounds.extents.z * 2); x++)
             {
-                for (int y=0; y<bounds.extents.y * 2; y++)
+                for (int y=0; y<Mathf.RoundToInt(bounds.extents.y * 2); y++)
                 {
                     hitOffsets.Add(new Vector3(0, y-startY, x-startX));
                 }
@@ -109,12 +147,15 @@ public class Pushable : MonoBehaviour
 
         if (pushDir == PushDirection.Forward || pushDir == PushDirection.Back)
         {
+            if (CanMoveForwardBack == false)
+                return false;
+
             float startZ = bounds.extents.x - 0.5f;
             float startY = bounds.extents.y - 0.5f;
 
-            for (int x=0; x<bounds.extents.x * 2; x++)
+            for (int x=0; x<Mathf.RoundToInt(bounds.extents.x * 2); x++)
             {
-                for (int y=0; y<bounds.extents.y * 2; y++)
+                for (int y=0; y<Mathf.RoundToInt(bounds.extents.y * 2); y++)
                 {
                     hitOffsets.Add(new Vector3(x-startZ, y-startY, 0));
                 }
@@ -123,13 +164,14 @@ public class Pushable : MonoBehaviour
 
         Vector3 mid = transform.position;
 
-        if (pushDir == PushDirection.Left)      mid -= new Vector3(bounds.extents.x, 0, 0);
-        if (pushDir == PushDirection.Right)     mid += new Vector3(bounds.extents.x, 0, 0);
-        if (pushDir == PushDirection.Forward)   mid += new Vector3(0, 0, bounds.extents.z);
-        if (pushDir == PushDirection.Back)      mid -= new Vector3(0, 0, bounds.extents.z);
+        if (pushDir == PushDirection.Left)      mid -= new Vector3(bounds.extents.x - 0.1f, 0, 0);
+        if (pushDir == PushDirection.Right)     mid += new Vector3(bounds.extents.x - 0.1f, 0, 0);
+        if (pushDir == PushDirection.Forward)   mid += new Vector3(0, 0, bounds.extents.z - 0.1f);
+        if (pushDir == PushDirection.Back)      mid -= new Vector3(0, 0, bounds.extents.z - 0.1f);
 
         foreach (Vector3 v in hitOffsets)
         {
+            Debug.DrawLine(mid + v, mid + v + (direction.normalized * 0.8f), Color.red, 1);
             if (Physics.Raycast(mid + v, direction, out RaycastHit hit, 0.8f))
             {
                 return false;
