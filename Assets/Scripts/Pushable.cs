@@ -22,14 +22,16 @@ public class Pushable : MonoBehaviour
     protected virtual bool CanMoveLeftRight => true;
     protected virtual bool CanMoveForwardBack => true;
 
-    private bool _isFalling;
-    private bool _isFloating;
     private float _fallHeight;
     private Vector3 _velocity;
 
+    private Quaternion _rotation;
+
+    private Rigidbody _rb;
+
     private WaterManager _water;
 
-    public bool IsFalling => _isFalling;
+    public bool IsFalling => _rb.velocity.y > 0.01f;
 
     private bool _isInWater;
 
@@ -37,42 +39,25 @@ public class Pushable : MonoBehaviour
 
     private void Start()
     {
+        _rotation = transform.rotation;
+        _rb = GetComponent<Rigidbody>();
         _water = FindObjectOfType<WaterManager>();
-        CheckIfShouldFall();
         SnapToGrid();
     }
 
     private void Update()
     {
-        if (_isFalling)
-        {
-            _velocity += new Vector3(0, -_fallSpeed, 0) * Time.deltaTime;
-
-            transform.position += _velocity * Time.deltaTime;
-
-            if (transform.position.y < _fallHeight)
-            {
-                transform.position = new Vector3(transform.position.x, _fallHeight, transform.position.z);
-                _isFalling = false;
-            }
-        }
-
+        transform.rotation = _rotation;
         float topOfObject = transform.position.y + _collider.bounds.extents.y;
-        bool isUnderwater = _water.WaterHeightExact > topOfObject - 0.1f;
+        _isInWater = _water.WaterHeightExact >= topOfObject - 0.2f;
+        _rb.isKinematic = _isInWater;
 
-        if (isUnderwater == false && _isInWater == true)
-        {
-            _isInWater = false;
-            CheckIfShouldFall();
-        }
-
-        if (isUnderwater)
+        if (_isInWater)
         {
             float yPos = _water.WaterHeightExact - _collider.bounds.extents.y + 0.1f;
             transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
-            _isInWater = true;
-            _isFalling = false;
         }
+
     }
 
     public virtual void Push(Vector3 direction, PersonPushController player)
@@ -118,8 +103,6 @@ public class Pushable : MonoBehaviour
             }
         }
 
-        _fallHeight = highestPoint + bounds.extents.y;
-        _isFalling = true;
         return true;
     }
 
