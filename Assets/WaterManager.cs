@@ -4,7 +4,6 @@ using UnityEngine;
 public class WaterManager : MonoBehaviour
 {
     private const int WATER_RISING_TIME = 10;
-    private const int WATER_RISING_DELAY = 5;
 
     [SerializeField]
     [Range(0, 10)]
@@ -13,10 +12,13 @@ public class WaterManager : MonoBehaviour
     [SerializeField]
     private Transform _waterTransform;
 
+    [SerializeField]
+    private int _waterRiseDelay = 5;
+
     private bool _isMoving = false;
 
     [SerializeField]
-    private float _riseTime;
+    private float _timeUntilRise;
 
     public int WaterHeight => _waterHeight;
 
@@ -28,7 +30,7 @@ public class WaterManager : MonoBehaviour
 
     private void InitializeValues()
     {
-        _riseTime = WATER_RISING_TIME;
+        _timeUntilRise = WATER_RISING_TIME;
     }
 
     private void Update()
@@ -41,12 +43,12 @@ public class WaterManager : MonoBehaviour
     {
         if (_isMoving)
         {
-            _riseTime -= Time.deltaTime;
+            _timeUntilRise -= Time.deltaTime;
 
-            if (_riseTime <= 0)
+            if (_timeUntilRise <= 0)
             {
                 RiseWater();
-                _riseTime = WATER_RISING_TIME;
+                _timeUntilRise = WATER_RISING_TIME;
                 _isMoving = false;
             }
         }
@@ -59,7 +61,7 @@ public class WaterManager : MonoBehaviour
 
     private void RiseWater()
     {
-        _waterTransform.DOLocalMoveY(_waterHeight, WATER_RISING_DELAY);
+        _waterTransform.DOLocalMoveY(_waterHeight, _waterRiseDelay);
     }
 
     public void IncrementWaterLevel()
