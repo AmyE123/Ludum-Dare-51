@@ -213,7 +213,7 @@ namespace ThirdPersonMovement
                 SetHasJump(true);
                 Animator.DoJump();
             }
-            else if (_jump.hasExtraJump)
+            else if (false && _jump.hasExtraJump)
             {
                 float boostAlignment = Vector3.Dot(ActualVelocity.normalized, transform.forward);
                 boostAlignment = Mathf.Clamp01(boostAlignment);
@@ -231,7 +231,7 @@ namespace ThirdPersonMovement
 
         void SetHasJump(bool hasit)
         {
-            _jump.hasExtraJump = hasit;
+            _jump.hasExtraJump = false;
         }
 
         Vector3 ProjectOnContactPlane (Vector3 vector) 

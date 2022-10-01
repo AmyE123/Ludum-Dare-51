@@ -9823,7 +9823,6 @@ GameObject:
   - component: {fileID: 7996635678159963007}
   - component: {fileID: 7996635678159963003}
   - component: {fileID: 101309771611821844}
-  - component: {fileID: 7762499146187744015}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -9901,8 +9900,7 @@ MonoBehaviour:
     desiredVelocity: {x: 0, y: 0, z: 0}
   _collider: {fileID: 7996635678159963007}
   _localAnims: {fileID: 7437458303423646453}
-  _subControllers:
-  - {fileID: 7762499146187744015}
+  _subControllers: []
   _activeSubController: {fileID: 0}
 --- !u!136 &7996635678159963007
 CapsuleCollider:
@@ -9949,22 +9947,6 @@ MonoBehaviour:
   _resetPosition: {x: 0, y: 5, z: 0}
   _zKill: -5
   _setOnStart: 1
---- !u!114 &7762499146187744015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7996635678159963005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cad8f8c3585534822b49a3dc098d1bc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _middleOffset: {x: 0, y: 0.9, z: 0}
-  _particles: {fileID: 1948068316596960584}
-  _gravityMultiplier: 1
-  _player: {fileID: 2310842279338448118}
 --- !u!1001 &540161522338780619
 PrefabInstance:
   m_ObjectHideFlags: 0
