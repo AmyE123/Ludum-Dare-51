@@ -19,6 +19,8 @@ namespace ThirdPersonMovement
         private Vector3 _pushDirection;
         private float _pushTime;
         private bool _isLockedIn;
+        
+        public bool IsWarmingUp => _pushTime > 0;
 
         void Start()
         {
@@ -39,12 +41,25 @@ namespace ThirdPersonMovement
 
         void FixedUpdate()
         {
+            if (_isLockedIn)
+                return;
+
             if (_activePushable == null)
                 DetectPushables();
 
             if (_activePushable == null)
                 return;
+
+            Vector3 pushDir = GetPushDirection();
             
+            if (Vector3.Dot(pushDir, _pushDirection) < 0.6f)
+            {
+                _activePushable = null;
+                _pushTime = 0;
+                _player.StopTakeOver(this, false);
+                return;
+            }
+
             _pushTime += Time.deltaTime;
 
             if (_pushTime < _warmUpTime)
@@ -90,6 +105,8 @@ namespace ThirdPersonMovement
                 Vector3 dirToPush = -hit.normal;
                 dirToPush.y = 0;
                 dirToPush.Normalize();
+                _player.TakeOver(this, false);
+                _movement.CancelVelocity();
 
                 _pushDirection = dirToPush;
             }
@@ -101,6 +118,9 @@ namespace ThirdPersonMovement
                 return;
 
             if (_isLockedIn)
+                return;
+
+            if (_movement.IsGrounded == false)
                 return;
 
             _activePushable.Push(_pushDirection, this);

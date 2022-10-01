@@ -46,6 +46,7 @@ namespace ThirdPersonMovement
 
         public void CancelVelocity()
         {
+            _move.desiredVelocity = Vector3.zero;
             _rb.velocity = Vector3.zero;
         }
 

@@ -9874,7 +9874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jump:
-    height: 2
+    height: 1.5
     extraJumpSpeed: 10
     extraJumpLift: 2
     hasExtraJump: 0
@@ -9893,7 +9893,7 @@ MonoBehaviour:
   _move:
     maxAcceleration: 15
     maxSkidDeceleration: 50
-    maxAirAcceleration: 2
+    maxAirAcceleration: 8
     maxAirDecceleration: 0.2
     maxSpeed: 8
     tempMaxSpeed: 0
@@ -9946,7 +9946,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0270210ac4d254e05a29865c20aa8c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resetPosition: {x: 0, y: 5, z: 0}
+  _waterManager: {fileID: 0}
+  _resetPositions: []
   _zKill: -5
   _setOnStart: 1
 --- !u!114 &6995736114414215581
@@ -9962,11 +9963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 7996635678159963006}
-  _moveSpeed: 1
   _warmUpTime: 0.3
-  _pushTime: 0
-  _isLockedIn: 0
-  _pushDirection: {x: 0, y: 0, z: 0}
   _pushableLayer:
     serializedVersion: 2
     m_Bits: 128
