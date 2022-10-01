@@ -39,6 +39,7 @@ public class Pushable : MonoBehaviour
     {
         _water = FindObjectOfType<WaterManager>();
         CheckIfShouldFall();
+        SnapToGrid();
     }
 
     private void Update()
@@ -171,7 +172,6 @@ public class Pushable : MonoBehaviour
 
         foreach (Vector3 v in hitOffsets)
         {
-            Debug.DrawLine(mid + v, mid + v + (direction.normalized * 0.8f), Color.red, 1);
             if (Physics.Raycast(mid + v, direction, out RaycastHit hit, 0.8f))
             {
                 return false;
@@ -195,13 +195,32 @@ public class Pushable : MonoBehaviour
         return PushDirection.None;
     }
 
+    protected void SnapToGrid()
+    {
+        bool halfX = Mathf.RoundToInt(_collider.bounds.extents.x * 2) % 2 == 1;
+        bool halfZ = Mathf.RoundToInt(_collider.bounds.extents.z * 2) % 2 == 1;
+        
+        float xPos = transform.position.x;
+        float zPos = transform.position.z;
+
+        if (halfX) xPos += 0.5f;
+        if (halfZ) zPos += 0.5f;
+
+        xPos = Mathf.Round(xPos);
+        zPos = Mathf.Round(zPos);
+
+        if (halfX) xPos -= 0.5f;
+        if (halfZ) zPos -= 0.5f;
+
+        transform.position = new Vector3(xPos, transform.position.y, zPos);
+    }
+
     protected virtual IEnumerator PushRoutine(Vector3 direction, PersonPushController player)
     {
         float distanceToMove = 1f;
         float t = 0;
 
         player.LockIntoPushing();
-
         Vector3 startPos = transform.position;
         Vector3 endPos = transform.position + (direction * distanceToMove);
 
@@ -216,6 +235,7 @@ public class Pushable : MonoBehaviour
             yield return null;
         }
 
+        SnapToGrid();
         player.UnlockPushing();
     }
 }

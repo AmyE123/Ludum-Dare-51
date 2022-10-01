@@ -41,6 +41,8 @@ public class RollingLog : Pushable
 
             if (t >= 1)
             {
+                SnapToGrid();
+
                 if (isFirstPush)
                     player.UnlockPushing();
 
