@@ -22,14 +22,16 @@ public class Pushable : MonoBehaviour
     protected virtual bool CanMoveLeftRight => true;
     protected virtual bool CanMoveForwardBack => true;
 
-    private bool _isFalling;
-    private bool _isFloating;
     private float _fallHeight;
     private Vector3 _velocity;
 
+    private Quaternion _rotation;
+
+    private Rigidbody _rb;
+
     private WaterManager _water;
 
-    public bool IsFalling => _isFalling;
+    public bool IsFalling => _rb.velocity.y > 0.01f;
 
     private bool _isInWater;
 
@@ -37,41 +39,25 @@ public class Pushable : MonoBehaviour
 
     private void Start()
     {
+        _rotation = transform.rotation;
+        _rb = GetComponent<Rigidbody>();
         _water = FindObjectOfType<WaterManager>();
-        CheckIfShouldFall();
+        SnapToGrid();
     }
 
     private void Update()
     {
-        if (_isFalling)
-        {
-            _velocity += new Vector3(0, -_fallSpeed, 0) * Time.deltaTime;
-
-            transform.position += _velocity * Time.deltaTime;
-
-            if (transform.position.y < _fallHeight)
-            {
-                transform.position = new Vector3(transform.position.x, _fallHeight, transform.position.z);
-                _isFalling = false;
-            }
-        }
-
+        transform.rotation = _rotation;
         float topOfObject = transform.position.y + _collider.bounds.extents.y;
-        bool isUnderwater = _water.WaterHeightExact > topOfObject - 0.1f;
+        _isInWater = _water.WaterHeightExact >= topOfObject - 0.2f;
+        _rb.isKinematic = _isInWater;
 
-        if (isUnderwater == false && _isInWater == true)
-        {
-            _isInWater = false;
-            CheckIfShouldFall();
-        }
-
-        if (isUnderwater)
+        if (_isInWater)
         {
             float yPos = _water.WaterHeightExact - _collider.bounds.extents.y + 0.1f;
             transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
-            _isInWater = true;
-            _isFalling = false;
         }
+
     }
 
     public virtual void Push(Vector3 direction, PersonPushController player)
@@ -117,8 +103,6 @@ public class Pushable : MonoBehaviour
             }
         }
 
-        _fallHeight = highestPoint + bounds.extents.y;
-        _isFalling = true;
         return true;
     }
 
@@ -171,7 +155,6 @@ public class Pushable : MonoBehaviour
 
         foreach (Vector3 v in hitOffsets)
         {
-            Debug.DrawLine(mid + v, mid + v + (direction.normalized * 0.8f), Color.red, 1);
             if (Physics.Raycast(mid + v, direction, out RaycastHit hit, 0.8f))
             {
                 return false;
@@ -195,13 +178,32 @@ public class Pushable : MonoBehaviour
         return PushDirection.None;
     }
 
+    protected void SnapToGrid()
+    {
+        bool halfX = Mathf.RoundToInt(_collider.bounds.extents.x * 2) % 2 == 1;
+        bool halfZ = Mathf.RoundToInt(_collider.bounds.extents.z * 2) % 2 == 1;
+        
+        float xPos = transform.position.x;
+        float zPos = transform.position.z;
+
+        if (halfX) xPos += 0.5f;
+        if (halfZ) zPos += 0.5f;
+
+        xPos = Mathf.Round(xPos);
+        zPos = Mathf.Round(zPos);
+
+        if (halfX) xPos -= 0.5f;
+        if (halfZ) zPos -= 0.5f;
+
+        transform.position = new Vector3(xPos, transform.position.y, zPos);
+    }
+
     protected virtual IEnumerator PushRoutine(Vector3 direction, PersonPushController player)
     {
         float distanceToMove = 1f;
         float t = 0;
 
         player.LockIntoPushing();
-
         Vector3 startPos = transform.position;
         Vector3 endPos = transform.position + (direction * distanceToMove);
 
@@ -216,6 +218,7 @@ public class Pushable : MonoBehaviour
             yield return null;
         }
 
+        SnapToGrid();
         player.UnlockPushing();
     }
 }
