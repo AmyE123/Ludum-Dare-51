@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         Vector3 xComponent = playerInput.x * _cameraFollow.CameraRight;
         Vector3 yComponent = playerInput.y * _cameraFollow.CameraForward;
 
-        _movement.SetDesiredDirection(xComponent + yComponent);
+        _movement.ControlsInput(xComponent + yComponent);
         _movement.SetJumpRequested(Input.GetButtonDown("Jump"));
     }
 }

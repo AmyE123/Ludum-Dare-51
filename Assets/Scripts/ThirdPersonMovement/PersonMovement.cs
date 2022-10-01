@@ -82,6 +82,14 @@ namespace ThirdPersonMovement
             _rb.AddForce(force);
         }
 
+        public void ControlsInput(Vector3 direction)
+        {
+            if (_activeSubController != null)
+                return;
+
+            SetDesiredDirection(direction);
+        }
+
         public void SetDesiredDirection(Vector3 direction)
         {
             _move.desiredVelocity = direction * _move.tempMaxSpeed;
