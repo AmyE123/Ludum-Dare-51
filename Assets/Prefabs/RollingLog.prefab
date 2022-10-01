@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1539985312698172630}
   - component: {fileID: 1069036333508159428}
   m_Layer: 7
-  m_Name: Log
+  m_Name: RollingLog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1590f9230083a7c4abdb1d3d2231975e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pushSpeed: 2
+  _pushSpeed: 4
   _collider: {fileID: 1539985312698172630}
   _fallSpeed: 11
   _floatSpeed: 5

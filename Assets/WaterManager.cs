@@ -20,6 +20,8 @@ public class WaterManager : MonoBehaviour
     [SerializeField]
     private float _timeUntilRise;
 
+    public float TimeUntilRise => Mathf.Clamp(_timeUntilRise, 0, WATER_RISING_TIME);
+
     public int WaterHeight => _waterHeight;
 
     public float WaterHeightExact => _waterTransform.position.y;
@@ -55,7 +57,7 @@ public class WaterManager : MonoBehaviour
     {
         _timeUntilRise -= Time.deltaTime;
 
-        if (_timeUntilRise <= 0)
+        if (_timeUntilRise <= 0 && RollingLog.NumberRolling == 0)
         {
             IncrementWaterLevel();
             _timeUntilRise = WATER_RISING_TIME;
@@ -73,12 +75,18 @@ public class WaterManager : MonoBehaviour
 
     public void IncrementWaterLevel()
     {
+        if (RollingLog.NumberRolling != 0)
+            return;
+
         _waterHeight++;
         SetNewWaterLevel();
     }
 
     public void DecrementWaterLevel()
     {
+        if (RollingLog.NumberRolling != 0)
+            return;
+            
         _waterHeight--;
         SetNewWaterLevel();
     }
