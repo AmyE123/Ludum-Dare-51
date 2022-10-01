@@ -54,12 +54,7 @@ public class WaterManager : MonoBehaviour
         {
             _timeUntilRise = WATER_RISING_TIME;
             IncrementWaterLevel();
-        }
-        if (Input.GetKeyDown(KeyCode.KeypadMinus))
-        {
-            _timeUntilRise = WATER_RISING_TIME;
-            DecrementWaterLevel();
-        }   
+        } 
 
         UpdateWaterTimer();
 
@@ -82,6 +77,9 @@ public class WaterManager : MonoBehaviour
 
     private void UpdateWaterTimer()
     {
+        if (PauseMenu.IsGamePaused)
+            return;
+
         _timeUntilRise -= Time.deltaTime;
 
         if (_timeUntilRise <= 0 && RollingLog.NumberRolling == 0)
@@ -93,7 +91,6 @@ public class WaterManager : MonoBehaviour
 
     private void SetNewWaterLevel()
     {
-
         _isMoving = true;        
         _waterTransform.DOLocalMoveY(_waterHeight, _waterRiseDelay).OnComplete(() => 
         {

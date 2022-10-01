@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
         if (_cameraFollow == null)
             _cameraFollow = FindObjectOfType<CameraFollow>();
 
+        if (PauseMenu.IsGamePaused)
+            return;
+
         Vector2 playerInput = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         playerInput = Vector2.ClampMagnitude(playerInput, 1);
 
