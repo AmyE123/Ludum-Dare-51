@@ -115,6 +115,7 @@ MonoBehaviour:
   _collider: {fileID: 1539985312698172630}
   _fallSpeed: 11
   _floatSpeed: 5
+  _logTransform: {fileID: 1539985312698172629}
 --- !u!1 &5816377878909335868
 GameObject:
   m_ObjectHideFlags: 0
