@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PositionReset : MonoBehaviour
 {
-    private const string KillTag = "KillPlane";
-
     [SerializeField]
     private WaterManager _waterManager;
 
@@ -18,28 +16,17 @@ public class PositionReset : MonoBehaviour
     [SerializeField]
     private bool _setOnStart;
 
-    private bool _isHit;
-
     void Start()
     {
         if (_setOnStart)
             _resetPositions[0] = transform.position;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == KillTag)
-        {
-            _isHit = true;
-        }
-    }
-
     void Update()
     {
-        if (transform.position.y < _zKill || _isHit)
+        if (transform.position.y < _zKill)
         {
             ResetPosition();
-            _isHit = false;
         }
     }
 

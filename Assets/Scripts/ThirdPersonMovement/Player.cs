@@ -6,12 +6,69 @@ using ThirdPersonMovement;
 [RequireComponent(typeof(PersonMovement))]
 public class Player : MonoBehaviour
 {
+    private const string KillTag = "KillPlane";
+
+    [SerializeField]
+    private int _killDelay = 3;
+
+    [SerializeField]
+    private float _timeUntilKill;
+
+    [SerializeField]
+    private bool _hasHitWater;
+
     PersonMovement _movement;
     CameraFollow _cameraFollow;
 
-    void Update()
+    private void Start()
+    {
+        InitializeValues();
+    }
+
+    private void Update()
     {
         HandlePlayerInput();
+        UpdatePlayerHealth();
+    }
+
+    private void InitializeValues()
+    {
+        _timeUntilKill = _killDelay;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == KillTag)
+        {
+            _hasHitWater = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == KillTag)
+        {
+            _hasHitWater = false;
+        }
+    }
+
+    private void UpdatePlayerHealth()
+    {
+        if (_hasHitWater)
+        {
+            _timeUntilKill -= Time.deltaTime;
+            if (_timeUntilKill <= 0)
+            {               
+                KillPlayer();
+                _timeUntilKill = _killDelay;
+                _hasHitWater = false;
+            }
+        }
+    }
+
+    private void KillPlayer()
+    {
+        Debug.Log("Die");
     }
 
     void HandlePlayerInput()
