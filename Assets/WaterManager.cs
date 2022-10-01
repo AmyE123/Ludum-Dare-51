@@ -15,8 +15,6 @@ public class WaterManager : MonoBehaviour
     [SerializeField]
     private int _waterRiseDelay = 5;
 
-    private bool _isMoving = false;
-
     [SerializeField]
     private float _timeUntilRise;
 
