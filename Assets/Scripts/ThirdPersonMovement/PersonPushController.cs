@@ -147,7 +147,7 @@ namespace ThirdPersonMovement
             _isLockedIn = false;
             Vector3 direction = GetPushDirection();
 
-            if (_activePushable.ShouldFall())
+            if (_activePushable.CheckIfShouldFall())
             {
                 CancelPushing();
                 return;

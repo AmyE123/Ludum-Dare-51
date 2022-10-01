@@ -16,19 +16,34 @@ public class Pushable : MonoBehaviour
     [SerializeField]
     private float _fallSpeed = 5;
 
+    [SerializeField]
+    private float _floatSpeed = 5;
+
     private bool _isFalling;
+    private bool _isFloating;
     private float _fallHeight;
     private Vector3 _velocity;
 
+    private WaterManager _water;
+
     public bool IsFalling => _isFalling;
 
-    public bool IsInWater => false;
+    private bool _isInWater;
+
+    public bool IsInWater => _isInWater;
+
+    private void Start()
+    {
+        _water = FindObjectOfType<WaterManager>();
+        CheckIfShouldFall();
+    }
 
     private void Update()
     {
         if (_isFalling)
         {
             _velocity += new Vector3(0, -_fallSpeed, 0) * Time.deltaTime;
+
             transform.position += _velocity * Time.deltaTime;
 
             if (transform.position.y < _fallHeight)
@@ -36,6 +51,23 @@ public class Pushable : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, _fallHeight, transform.position.z);
                 _isFalling = false;
             }
+        }
+
+        float topOfObject = transform.position.y + _collider.bounds.extents.y;
+        bool isUnderwater = _water.WaterHeightExact > topOfObject - 0.1f;
+
+        if (isUnderwater == false && _isInWater == true)
+        {
+            _isInWater = false;
+            CheckIfShouldFall();
+        }
+
+        if (isUnderwater)
+        {
+            float yPos = _water.WaterHeightExact - _collider.bounds.extents.y + 0.1f;
+            transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
+            _isInWater = true;
+            _isFalling = false;
         }
     }
 
@@ -50,7 +82,7 @@ public class Pushable : MonoBehaviour
         StartCoroutine(PushRoutine(direction, player));
     }
 
-    public bool ShouldFall()
+    public bool CheckIfShouldFall()
     {
         Bounds bounds = _collider.bounds;
         List<Vector3> hitOffsets = new List<Vector3>();
@@ -67,7 +99,7 @@ public class Pushable : MonoBehaviour
         }
 
         Vector3 mid = transform.position;
-        mid -= new Vector3(0, bounds.extents.y, 0);
+        mid -= new Vector3(0, bounds.extents.y-0.1f, 0);
         
         float highestPoint = -10f;
 
