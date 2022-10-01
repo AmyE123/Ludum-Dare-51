@@ -9,11 +9,6 @@ public class Player : MonoBehaviour
     PersonMovement _movement;
     CameraFollow _cameraFollow;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         HandlePlayerInput();
