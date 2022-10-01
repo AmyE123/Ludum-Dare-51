@@ -25,7 +25,7 @@ public class WaterManager : MonoBehaviour
     //private GameObject _VFXContainer;
 
     [SerializeField]
-    private ParticleSystem[] _splashVFX;
+    private ParticleController[] _splashVFX;
 
     public int WaterHeight => _waterHeight;
 
@@ -42,9 +42,9 @@ public class WaterManager : MonoBehaviour
         _waterHeight = 0;
         //_VFXContainer.SetActive(false);
 
-        foreach (ParticleSystem particle in _splashVFX)
+        foreach (ParticleController particle in _splashVFX)
         {
-            particle.Stop();
+            particle.isEmitting = false;
         }
     }
 
@@ -58,20 +58,9 @@ public class WaterManager : MonoBehaviour
 
         UpdateWaterTimer();
 
-        if (_isMoving)
+        foreach (ParticleController particle in _splashVFX)
         {
-            foreach (ParticleSystem particle in _splashVFX)
-            {
-                particle.Emit(1);
-                particle.Play();
-            }
-        }
-        else
-        {
-            foreach (ParticleSystem particle in _splashVFX)
-            {
-                particle.Stop();
-            }
+            particle.isEmitting = _isMoving;
         }
     }
 

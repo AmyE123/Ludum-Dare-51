@@ -73,7 +73,7 @@ public class PauseMenu : MenuScreen
 
     public void BtnPressMenu()
     {
-        TransitionManager.LoadScene("MenuScene");
+        TransitionManager.LoadScene("TitleScene");
     }
 
     public void BtnPressRetry()

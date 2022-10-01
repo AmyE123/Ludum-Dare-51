@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ThirdPersonMovement
 {
+    [DefaultExecutionOrder(-999)]
     public class PersonPushController : PersonSubController
     {
         [SerializeField]
@@ -72,7 +73,7 @@ namespace ThirdPersonMovement
         {
             if (_player.IsGrounded == false)
                 return Vector3.zero;
-
+            
             Vector2 dirPressed = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             dirPressed = Vector3.ClampMagnitude(dirPressed, 1);
 
