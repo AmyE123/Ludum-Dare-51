@@ -44,6 +44,11 @@ namespace ThirdPersonMovement
             GetComponent<Rigidbody>().isKinematic = true;
         }
 
+        public void CancelVelocity()
+        {
+            _rb.velocity = Vector3.zero;
+        }
+
         public void TakeOver(PersonSubController sub, bool becomeGhost)
         {
             _activeSubController = sub;

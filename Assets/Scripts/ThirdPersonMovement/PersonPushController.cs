@@ -86,7 +86,6 @@ namespace ThirdPersonMovement
                 dirToPush.Normalize();
 
                 _pushDirection = dirToPush;
-                Debug.DrawLine(hit.transform.position, hit.transform.position + (dirToPush*2), Color.green);
             }
         }
 
@@ -105,12 +104,21 @@ namespace ThirdPersonMovement
         {
             _isLockedIn = true;
             _player.TakeOver(this, false);
+            _player.CancelVelocity();
+        }
+
+        public void CancelPushing()
+        {
+            _activePushable = null;
+            _pushDirection = Vector3.zero;
+            _pushTime = 0;
+            _player.StopTakeOver(this, false);
+            _isLockedIn = false;
         }
 
         public void UnlockPushing()
         {
             _isLockedIn = false;
-
             Vector3 direction = GetPushDirection();
 
             bool isStillPushing = false;
@@ -123,10 +131,7 @@ namespace ThirdPersonMovement
 
             if (isStillPushing == false)
             {
-                _activePushable = null;
-                _pushDirection = Vector3.zero;
-                _pushTime = 0;
-                _player.StopTakeOver(this, false);
+                CancelPushing();
             }
             else
             {
