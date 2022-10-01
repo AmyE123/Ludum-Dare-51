@@ -13,6 +13,32 @@ public class Pushable : MonoBehaviour
     [SerializeField]
     private Collider _collider;
 
+    [SerializeField]
+    private float _fallSpeed = 5;
+
+    private bool _isFalling;
+    private float _fallHeight;
+    private Vector3 _velocity;
+
+    public bool IsFalling => _isFalling;
+
+    public bool IsInWater => false;
+
+    private void Update()
+    {
+        if (_isFalling)
+        {
+            _velocity += new Vector3(0, -_fallSpeed, 0) * Time.deltaTime;
+            transform.position += _velocity * Time.deltaTime;
+
+            if (transform.position.y < _fallHeight)
+            {
+                transform.position = new Vector3(transform.position.x, _fallHeight, transform.position.z);
+                _isFalling = false;
+            }
+        }
+    }
+
     public virtual void Push(Vector3 direction, PersonPushController player)
     {
         if (CheckIfCanMove(direction) == false)
@@ -20,8 +46,45 @@ public class Pushable : MonoBehaviour
             player.CancelPushing();
             return;
         }
-        
+
         StartCoroutine(PushRoutine(direction, player));
+    }
+
+    public bool ShouldFall()
+    {
+        Bounds bounds = _collider.bounds;
+        List<Vector3> hitOffsets = new List<Vector3>();
+
+        float startX = bounds.extents.x - 0.5f;
+        float startY = bounds.extents.z - 0.5f;
+
+        for (int x=0; x<bounds.extents.x * 2; x++)
+        {
+            for (int y=0; y<bounds.extents.z * 2; y++)
+            {
+                hitOffsets.Add(new Vector3(x-startX, 0, y-startY));
+            }
+        }
+
+        Vector3 mid = transform.position;
+        mid -= new Vector3(0, bounds.extents.y, 0);
+        
+        float highestPoint = -10f;
+
+        foreach (Vector3 v in hitOffsets)
+        {
+            if (Physics.Raycast(mid + v, Vector3.down, out RaycastHit hit, 10))
+            {
+                if (hit.distance < 0.01f)
+                    return false;
+                
+                highestPoint = Mathf.Max(highestPoint, hit.point.y);
+            }
+        }
+
+        _fallHeight = highestPoint + bounds.extents.y;
+        _isFalling = true;
+        return true;
     }
 
     protected bool CheckIfCanMove(Vector3 direction)

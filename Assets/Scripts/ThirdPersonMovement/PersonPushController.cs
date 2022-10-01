@@ -81,6 +81,12 @@ namespace ThirdPersonMovement
                 if (_activePushable == null)
                     return;
 
+                if (_activePushable.IsFalling || _activePushable.IsInWater)
+                {
+                    _activePushable = null;
+                    return;
+                }
+
                 Vector3 dirToPush = -hit.normal;
                 dirToPush.y = 0;
                 dirToPush.Normalize();
@@ -120,6 +126,12 @@ namespace ThirdPersonMovement
         {
             _isLockedIn = false;
             Vector3 direction = GetPushDirection();
+
+            if (_activePushable.ShouldFall())
+            {
+                CancelPushing();
+                return;
+            }
 
             bool isStillPushing = false;
 
