@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
+    private const string PLAYER_TAG = "Player";
+
     private LevelManager _levelManager;
 
     private void Start()
@@ -11,7 +13,7 @@ public class Collectable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == PLAYER_TAG)
         {
             _levelManager.Collect(this);
             UnspawnCollectable();

@@ -45,7 +45,7 @@ public class PositionReset : MonoBehaviour
 
     void ResetPosition()
     {
-        transform.position = _resetPositions[_waterManager.WaterHeight - 1];
+        transform.position = _resetPositions[_waterManager.WaterHeight];
         GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }
