@@ -22,63 +22,64 @@ public class WaterManager : MonoBehaviour
 
     public int WaterHeight => _waterHeight;
 
+    public float WaterHeightExact => _waterTransform.position.y;
+
     private void Start()
     {
         InitializeValues();
-        _waterHeight = 0;
     }
 
     private void InitializeValues()
     {
         _timeUntilRise = WATER_RISING_TIME;
+        _waterHeight = 0;
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            _timeUntilRise = WATER_RISING_TIME;
+            IncrementWaterLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        {
+            _timeUntilRise = WATER_RISING_TIME;
+            DecrementWaterLevel();
+        }   
+
         UpdateWaterTimer();
-        IncrementWaterLevel();
     }
 
     private void UpdateWaterTimer()
     {
-        if (_isMoving)
-        {
-            _timeUntilRise -= Time.deltaTime;
+        _timeUntilRise -= Time.deltaTime;
 
-            if (_timeUntilRise <= 0)
-            {
-                RiseWater();
-                _timeUntilRise = WATER_RISING_TIME;
-                _isMoving = false;
-            }
+        if (_timeUntilRise <= 0)
+        {
+            IncrementWaterLevel();
+            _timeUntilRise = WATER_RISING_TIME;
         }
     }
 
     private void SetNewWaterLevel()
     {
         _isMoving = true;
-    }
-
-    private void RiseWater()
-    {
-        _waterTransform.DOLocalMoveY(_waterHeight, _waterRiseDelay);
+        _waterTransform.DOLocalMoveY(_waterHeight, _waterRiseDelay).OnComplete(() => 
+        {
+            _isMoving = false;
+        });
     }
 
     public void IncrementWaterLevel()
     {
-        if (!_isMoving)
-        {
-            _waterHeight++;
-            SetNewWaterLevel();
-        }
+        _waterHeight++;
+        SetNewWaterLevel();
     }
 
     public void DecrementWaterLevel()
     {
-        if (!_isMoving)
-        {
-            _waterHeight--;
-            SetNewWaterLevel();
-        }
+        _waterHeight--;
+        SetNewWaterLevel();
     }
 }
