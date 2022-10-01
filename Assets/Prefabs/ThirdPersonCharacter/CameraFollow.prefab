@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3920616372661525048}
   - component: {fileID: 3920616372661525191}
+  - component: {fileID: 8323293531497506862}
   m_Layer: 0
   m_Name: CameraFollow
   m_TagString: Untagged
@@ -47,6 +48,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lerpSpeed: 5
   _target: {fileID: 0}
+--- !u!114 &8323293531497506862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3920616372661525190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4721ac5ab3bf5fa44af7f8d38ce4802b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _volume: {fileID: 239691469}
+  _vignette: {fileID: 0}
+  _colorAdjustments: {fileID: 0}
+  _chromaticAberration: {fileID: 0}
 --- !u!1 &3920616373113007231
 GameObject:
   m_ObjectHideFlags: 0

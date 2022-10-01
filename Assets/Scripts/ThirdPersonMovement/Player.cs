@@ -23,19 +23,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _hasHitWater;
 
-    #region TEMP
     [SerializeField]
-    private GameObject _tempUI;
-
-    [SerializeField]
-    private Volume _tempPostProcessingVolume;
-    [SerializeField]
-    private Vignette _vg;
-    [SerializeField]
-    private ColorAdjustments _ca;
-    [SerializeField]
-    private ChromaticAberration _chrA;
-    #endregion
+    private CameraPostProcessing _cameraPostProcessing;
 
     PersonMovement _movement;
     CameraFollow _cameraFollow;
@@ -43,11 +32,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         InitializeValues();
-        _tempUI.SetActive(false);
-
-        _tempPostProcessingVolume.profile.TryGet(out _vg);
-        _tempPostProcessingVolume.profile.TryGet(out _ca);
-        _tempPostProcessingVolume.profile.TryGet(out _chrA);
     }
 
     private void Update()
@@ -81,15 +65,8 @@ public class Player : MonoBehaviour
     {
         if (_hasHitWater)
         {
-            _timeUntilKill -= Time.deltaTime;      
-            
-            _chrA.intensity.value += Time.deltaTime;
-            _ca.saturation.value -= Time.deltaTime * 30;
-
-            if (_vg.intensity.value <= 0.3f)
-            {
-                _vg.intensity.value += Time.deltaTime / 30;
-            }
+            _timeUntilKill -= Time.deltaTime;
+            _cameraPostProcessing.UpdatePostProcessing();
 
             if (_timeUntilKill <= 0)
             {               
@@ -103,7 +80,6 @@ public class Player : MonoBehaviour
     private void KillPlayer()
     {
         Debug.Log("Die");
-        _tempUI.SetActive(true);
     }
 
     void HandlePlayerInput()
