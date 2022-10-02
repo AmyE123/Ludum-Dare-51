@@ -832,7 +832,6 @@ GameObject:
   - component: {fileID: 947650538}
   - component: {fileID: 947650537}
   - component: {fileID: 947650536}
-  - component: {fileID: 947650535}
   m_Layer: 5
   m_Name: BGCanvas
   m_TagString: Untagged
@@ -840,27 +839,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &947650535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 947650534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 416e64f3797a2fe42a7597de669c0ec7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _transitionTime: 0.5
-  _newScreenDelay: 0.05
-  _ease: 12
-  _transitionOffset: {x: -12, y: 0}
-  _rootScreen: {fileID: 0}
-  _playScreen: {fileID: 0}
-  _instructionsScreen: {fileID: 0}
-  _settingsScreen: {fileID: 0}
-  _initialLoadDelay: 0.5
 --- !u!114 &947650536
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -77,6 +77,8 @@ public class MenuScreen : MonoBehaviour
         DOTween.Kill(_rect);
         DOTween.Kill(_grp);
 
+        _grp.interactable = _grp.blocksRaycasts = false;
+
         _rect.DOAnchorPos(newPos, timing).SetEase(ease);
         _grp.DOFade(0, timing).SetEase(ease).OnComplete(() =>
         {
@@ -92,6 +94,7 @@ public class MenuScreen : MonoBehaviour
         gameObject.SetActive(true);
         _rect.anchoredPosition = fromPos;
         _rect.DOAnchorPos(Vector2.zero, timing).SetDelay(delay).SetEase(ease);
+        _grp.interactable = _grp.blocksRaycasts = true;
 
         _grp.alpha = 0;
         _grp.DOFade(1, timing).SetDelay(delay).SetEase(ease);

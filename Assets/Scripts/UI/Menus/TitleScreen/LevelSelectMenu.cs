@@ -30,5 +30,6 @@ public class LevelSelectMenu : MenuScreen
     public void ChooseLevel(LevelData level)
     {
         _levels.ChooseLevel(level);
+        TransitionManager.LoadScene("GameScene");
     }
 }
