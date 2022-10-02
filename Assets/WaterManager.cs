@@ -13,14 +13,33 @@ public class WaterManager : MonoBehaviour
     private Transform _waterTransform;
 
     [SerializeField]
-    private int _waterRiseDelay = 5;  
+    private int _waterRiseDelay = 5;
+
+    private bool _isMoving = false;
 
     [SerializeField]
     private float _timeUntilRise;
 
-    private bool _isMoving = false;
-
     public float TimeUntilRise => Mathf.Clamp(_timeUntilRise, 0, WATER_RISING_TIME);
+
+    public float PercentDone => TimeUntilRise / WATER_RISING_TIME;
+
+    public float speedMultiplier = 1;
+
+    public float DisplayPercent
+    {
+        get
+        {
+            if (_isMoving)
+                return 0;
+            
+            float timeBetweenRise = WATER_RISING_TIME - _waterRiseDelay;
+            return Mathf.Clamp01(_timeUntilRise / timeBetweenRise);
+        }
+    }
+
+    //[SerializeField]
+    //private GameObject _VFXContainer;
 
     [SerializeField]
     private ParticleController[] _splashVFX;
@@ -48,12 +67,6 @@ public class WaterManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadPlus))
-        {
-            _timeUntilRise = WATER_RISING_TIME;
-            IncrementWaterLevel();
-        } 
-
         UpdateWaterTimer();
 
         foreach (ParticleController particle in _splashVFX)
@@ -67,12 +80,16 @@ public class WaterManager : MonoBehaviour
         if (PauseMenu.IsGamePaused)
             return;
 
-        _timeUntilRise -= Time.deltaTime;
+        if (_isMoving)
+            _timeUntilRise -= Time.deltaTime;
+        else
+            _timeUntilRise -= Time.deltaTime * speedMultiplier;
+
 
         if (_timeUntilRise <= 0 && RollingLog.NumberRolling == 0)
         {
             IncrementWaterLevel();
-            _timeUntilRise = WATER_RISING_TIME;
+            _timeUntilRise += WATER_RISING_TIME;
         }
     }
 
