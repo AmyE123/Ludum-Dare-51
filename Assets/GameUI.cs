@@ -17,6 +17,9 @@ public class GameUI : MonoBehaviour
 
     void Update()
     {
+        if (_deathMenu.IsOnScreen)
+            return;
+            
         if (Input.GetButtonDown("Menu"))
             _pauseMenu.ToggleMenu();
 
@@ -30,6 +33,9 @@ public class GameUI : MonoBehaviour
     private IEnumerator ShowDeathMenu(float delay)
     {
         yield return new WaitForSeconds(delay);
+        
+        _pauseMenu.HidePauseMenu();
+
         _deathMenu.ShowDeathMenu();
     }
 }

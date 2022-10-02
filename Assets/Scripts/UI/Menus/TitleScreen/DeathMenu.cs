@@ -10,8 +10,13 @@ public class DeathMenu : MenuScreen
     [SerializeField]
     private CanvasGroup _rootCanvasGroup;
 
+    private bool _isOnScreen;
+
+    public bool IsOnScreen => _isOnScreen;
+
     public void SnapClosed()
     {
+        _isOnScreen = false;
         _rootCanvasGroup.gameObject.SetActive(false);
         _rootCanvasGroup.alpha = 0;
         _rootCanvasGroup.blocksRaycasts = _rootCanvasGroup.interactable = false;
@@ -20,6 +25,7 @@ public class DeathMenu : MenuScreen
 
     public void ShowDeathMenu()
     {
+        _isOnScreen = true;
         _rootCanvasGroup.gameObject.SetActive(true);
         _rootCanvasGroup.alpha = 0;
         _rootCanvasGroup.blocksRaycasts = _rootCanvasGroup.interactable = true;
@@ -29,6 +35,7 @@ public class DeathMenu : MenuScreen
 
     private void HideDeathMenu()
     {
+        _isOnScreen = false;
         DOTween.Kill(_rootCanvasGroup);
         _rootCanvasGroup.blocksRaycasts = _rootCanvasGroup.interactable = false;
         AnimateOut();

@@ -54,7 +54,7 @@ public class PauseMenu : MenuScreen
         AnimateIn();
     }
 
-    private void HidePauseMenu()
+    public void HidePauseMenu()
     {
         _isVisible = false;
         StartCoroutine(UnpauseGame(0.1f));
