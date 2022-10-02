@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e059bb9c8e76e5b449e1fbac46e57c3a, type: 3}
+  m_Name: Level_06
+  m_EditorClassIdentifier: 
+  _name: Don't Overstep
+  _description: Be careful, you don't want to fall off
+  _levelPrefab: {fileID: 3268335886197459680, guid: f48fe2a159d42c04d9e3f6ebb8bc4597,
+    type: 3}
