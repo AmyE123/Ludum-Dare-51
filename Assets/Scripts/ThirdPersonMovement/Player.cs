@@ -70,7 +70,6 @@ public class Player : MonoBehaviour
         float waterHeight = _water.WaterHeightExact;
 
         float underwaterPercent = Mathf.Clamp01(waterHeight - playerBottom);
-        Debug.Log($"Underwater percent is {underwaterPercent}");
 
         if (underwaterPercent > 0)
             _currentDrownTime += Time.deltaTime * underwaterPercent;
@@ -99,6 +98,8 @@ public class Player : MonoBehaviour
         gameObject.SetActive(false);
         GameObject newObj = Instantiate(_explodePrefab, transform.position, transform.rotation);
         Destroy(newObj, 10);
+
+        FindObjectOfType<GameUI>().PlayerDied();
     }
 
     void HandlePlayerInput()

@@ -7,6 +7,9 @@ public class GameUI : MonoBehaviour
     [SerializeField]
     private PauseMenu _pauseMenu;
 
+    [SerializeField]
+    private DeathMenu _deathMenu;
+
     void Start()
     {
         _pauseMenu.SnapClosed();
@@ -17,5 +20,16 @@ public class GameUI : MonoBehaviour
         if (Input.GetButtonDown("Menu"))
             _pauseMenu.ToggleMenu();
 
+    }
+
+    public void PlayerDied()
+    {
+        StartCoroutine(ShowDeathMenu(1f));
+    }
+
+    private IEnumerator ShowDeathMenu(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        _deathMenu.ShowDeathMenu();
     }
 }
