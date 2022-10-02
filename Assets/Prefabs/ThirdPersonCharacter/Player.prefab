@@ -9862,6 +9862,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e11dd76e8eb4889a7f73391eb8d3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _killDelay: 3
+  _timeUntilKill: 0
+  _hasHitWater: 0
+  _cameraPostProcessing: {fileID: 0}
 --- !u!114 &7996635678159963006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10588,17 +10592,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.90000004
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.90000004
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.90000004
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}

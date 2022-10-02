@@ -1538,6 +1538,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uncollectedCollectables: []
   _collectedCollectables: []
+  _player: {fileID: 0}
+  _levels: {fileID: 0}
 --- !u!4 &166659637
 Transform:
   m_ObjectHideFlags: 0
@@ -8491,17 +8493,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 1986953365}
   m_VersionIndex: 4558
   m_IsSelectable: 1
-  m_SelectedFaces: 03000000
-  m_SelectedEdges:
-  - a: 12
-    b: 13
-  - a: 14
-    b: 12
-  - a: 13
-    b: 15
-  - a: 15
-    b: 14
-  m_SelectedVertices: 0c0000000d0000000e0000000f000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!4 &684446626
 Transform:
   m_ObjectHideFlags: 0
@@ -8593,6 +8587,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996635678159963002, guid: 340bb27224b0a4241a56a91cc837c628,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996635678159963002, guid: 340bb27224b0a4241a56a91cc837c628,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996635678159963002, guid: 340bb27224b0a4241a56a91cc837c628,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7996635678159963002, guid: 340bb27224b0a4241a56a91cc837c628,
         type: 3}
