@@ -21,6 +21,21 @@ public class WaterManager : MonoBehaviour
     private float _timeUntilRise;
 
     public float TimeUntilRise => Mathf.Clamp(_timeUntilRise, 0, WATER_RISING_TIME);
+
+    public float PercentDone => TimeUntilRise / WATER_RISING_TIME;
+
+    public float DisplayPercent
+    {
+        get
+        {
+            if (_isMoving)
+                return 0;
+            
+            float timeBetweenRise = WATER_RISING_TIME - _waterRiseDelay;
+            return Mathf.Clamp01(_timeUntilRise / timeBetweenRise);
+        }
+    }
+
     //[SerializeField]
     //private GameObject _VFXContainer;
 
