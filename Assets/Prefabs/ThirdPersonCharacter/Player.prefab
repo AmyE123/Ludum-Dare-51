@@ -10705,6 +10705,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -5842670787509776276, guid: de3376b3fac5f6b4faa18a0c391d724e,
+        type: 3}
+      propertyPath: m_BlendShapeWeights.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5842670787509776276, guid: de3376b3fac5f6b4faa18a0c391d724e,
+        type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[0]
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: -5104221557362567003, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_Layer
@@ -10841,6 +10851,11 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -108856522821448358, guid: de3376b3fac5f6b4faa18a0c391d724e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -58385531142197912, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_Layer
       value: 6
