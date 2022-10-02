@@ -11,6 +11,26 @@ public class CameraPostProcessing : MonoBehaviour
     private ColorAdjustments _colorAdjustments;
     private ChromaticAberration _chromaticAberration;
 
+    [Header("Normal")]
+    [SerializeField, Range(-100, 100)]
+    private float _aliveSaturation;
+
+    [SerializeField, Range(0, 1)]
+    private float _aliveAbberation;
+
+    [SerializeField, Range(0, 1)]
+    private float _aliveVignetteIntensity;
+
+    [Header("Dying")]
+    [SerializeField, Range(-100, 100)]
+    private float _dyingSaturation;
+
+    [SerializeField, Range(0, 1)]
+    private float _dyingAbberation;
+
+    [SerializeField, Range(0, 1)]
+    private float _dyingVignetteIntensity;
+
     private void Start()
     {
         _volume.profile.TryGet(out _vignette);
@@ -18,14 +38,10 @@ public class CameraPostProcessing : MonoBehaviour
         _volume.profile.TryGet(out _chromaticAberration);
     }
 
-    public void UpdatePostProcessing()
+    public void SetDeadPercent(float percent)
     {
-        _chromaticAberration.intensity.value += Time.deltaTime;
-        _colorAdjustments.saturation.value -= Time.deltaTime * 30;
-
-        if (_vignette.intensity.value <= 0.3f)
-        {
-            _vignette.intensity.value += Time.deltaTime / 30;
-        }
+        _chromaticAberration.intensity.value = Mathf.Lerp(_aliveAbberation, _dyingAbberation, percent);
+        _colorAdjustments.saturation.value = Mathf.Lerp(_aliveSaturation, _dyingSaturation, percent);
+        _vignette.intensity.value = Mathf.Lerp(_aliveVignetteIntensity, _dyingVignetteIntensity, percent);
     }
 }

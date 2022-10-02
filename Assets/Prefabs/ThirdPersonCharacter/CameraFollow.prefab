@@ -61,9 +61,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _volume: {fileID: 239691469}
-  _vignette: {fileID: 0}
-  _colorAdjustments: {fileID: 0}
-  _chromaticAberration: {fileID: 0}
+  _aliveSaturation: 0
+  _aliveAbberation: 0
+  _aliveVignetteIntensity: 0
+  _dyingSaturation: -100
+  _dyingAbberation: 1
+  _dyingVignetteIntensity: 0.33
 --- !u!1 &3920616373113007231
 GameObject:
   m_ObjectHideFlags: 0

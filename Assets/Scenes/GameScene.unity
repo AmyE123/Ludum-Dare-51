@@ -220,7 +220,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35382
+  m_Name: pb_Mesh45070
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1113,7 +1113,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35398
+  m_Name: pb_Mesh45086
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1328,6 +1328,16 @@ PrefabInstance:
       propertyPath: _resetPositions.Array.data[2].z
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 2310842279338448118, guid: 340bb27224b0a4241a56a91cc837c628,
+        type: 3}
+      propertyPath: _water
+      value: 
+      objectReference: {fileID: 568044020}
+    - target: {fileID: 2310842279338448118, guid: 340bb27224b0a4241a56a91cc837c628,
+        type: 3}
+      propertyPath: _cameraPostProcessing
+      value: 
+      objectReference: {fileID: 3920616373319858617}
     - target: {fileID: 6995736114414215581, guid: 340bb27224b0a4241a56a91cc837c628,
         type: 3}
       propertyPath: _warmUpTime
@@ -2097,7 +2107,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35420
+  m_Name: pb_Mesh45124
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3521,7 +3531,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35484
+  m_Name: pb_Mesh45188
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4505,6 +4515,18 @@ PrefabInstance:
       objectReference: {fileID: 695947628}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3a3042c63952c64c8b302e2214d1111, type: 3}
+--- !u!114 &3920616373319858617 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8323293531497506862, guid: e3a3042c63952c64c8b302e2214d1111,
+    type: 3}
+  m_PrefabInstance: {fileID: 3920616373319858616}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4721ac5ab3bf5fa44af7f8d38ce4802b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5128268897199161579
 PrefabInstance:
   m_ObjectHideFlags: 0

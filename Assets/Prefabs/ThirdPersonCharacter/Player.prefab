@@ -9822,7 +9822,6 @@ GameObject:
   - component: {fileID: 7996635678159963006}
   - component: {fileID: 7996635678159963007}
   - component: {fileID: 7996635678159963003}
-  - component: {fileID: 101309771611821844}
   - component: {fileID: 6995736114414215581}
   m_Layer: 6
   m_Name: Player
@@ -9862,6 +9861,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e11dd76e8eb4889a7f73391eb8d3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _drownTimeRequirement: 3
+  _currentDrownTime: 0
+  _healthRestoreSpeed: 2
+  _water: {fileID: 0}
+  _cameraPostProcessing: {fileID: 0}
+  _explodePrefab: {fileID: 8689063404232214623, guid: c6867532e0400f9499a4b6ccd6f71725,
+    type: 3}
 --- !u!114 &7996635678159963006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9935,22 +9941,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 3
---- !u!114 &101309771611821844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7996635678159963005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0270210ac4d254e05a29865c20aa8c6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _waterManager: {fileID: 0}
-  _resetPositions: []
-  _zKill: -5
-  _setOnStart: 1
 --- !u!114 &6995736114414215581
 MonoBehaviour:
   m_ObjectHideFlags: 0
