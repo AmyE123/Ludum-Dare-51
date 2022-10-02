@@ -24,6 +24,8 @@ public class WaterManager : MonoBehaviour
 
     public float PercentDone => TimeUntilRise / WATER_RISING_TIME;
 
+    public float speedMultiplier = 1;
+
     public float DisplayPercent
     {
         get
@@ -65,12 +67,6 @@ public class WaterManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadPlus))
-        {
-            _timeUntilRise = WATER_RISING_TIME;
-            IncrementWaterLevel();
-        } 
-
         UpdateWaterTimer();
 
         foreach (ParticleController particle in _splashVFX)
@@ -84,12 +80,16 @@ public class WaterManager : MonoBehaviour
         if (PauseMenu.IsGamePaused)
             return;
 
-        _timeUntilRise -= Time.deltaTime;
+        if (_isMoving)
+            _timeUntilRise -= Time.deltaTime;
+        else
+            _timeUntilRise -= Time.deltaTime * speedMultiplier;
+
 
         if (_timeUntilRise <= 0 && RollingLog.NumberRolling == 0)
         {
             IncrementWaterLevel();
-            _timeUntilRise = WATER_RISING_TIME;
+            _timeUntilRise += WATER_RISING_TIME;
         }
     }
 
