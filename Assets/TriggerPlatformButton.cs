@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class TriggerPlatformButton : MonoBehaviour
 {
+    public enum TriggerState { RisePlatform, LowerGates, ToggleObject }
     private const string PLAYER_TAG = "Player";
 
     private bool _isPressed;
     private bool _hasMoved;
+
+    [SerializeField]
+    private TriggerState _triggerState;
 
     [SerializeField]
     private MeshRenderer _renderer;
@@ -22,7 +26,7 @@ public class TriggerPlatformButton : MonoBehaviour
     private int _platformLevel;
 
     [SerializeField]
-    private int _platformRiseDelay;
+    private int _platformMoveDelay;
 
     void Start()
     {
@@ -33,7 +37,9 @@ public class TriggerPlatformButton : MonoBehaviour
     {
         if(_isPressed)
         {
-            RisePlatform();
+            if (_triggerState == TriggerState.RisePlatform) { RisePlatform(); }
+            else if (_triggerState == TriggerState.LowerGates) { LowerGates(); }
+            else { ToggleObject(); }
         }
     }
 
@@ -50,8 +56,26 @@ public class TriggerPlatformButton : MonoBehaviour
     {
         if(!_hasMoved)
         {
-            _platform.DOLocalMoveY(_platformLevel, _platformRiseDelay);
+            _platform.DOLocalMoveY(_platformLevel, _platformMoveDelay);
             _hasMoved = true;
         }       
+    }
+
+    private void LowerGates()
+    {
+        if (!_hasMoved)
+        {
+            _platform.DOLocalMoveY(-20, _platformMoveDelay);
+            _hasMoved = true;
+        }
+    }
+
+    private void ToggleObject()
+    {
+        if (!_hasMoved)
+        {
+            _platform.gameObject.SetActive(!_platform.gameObject.activeInHierarchy);
+            _hasMoved = true;
+        }
     }
 }
