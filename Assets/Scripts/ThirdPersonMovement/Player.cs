@@ -2,16 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ThirdPersonMovement;
+using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering.Universal;
+using Vignette = UnityEngine.Rendering.Universal.Vignette;
+using ChromaticAberration = UnityEngine.Rendering.Universal.ChromaticAberration;
 
 [RequireComponent(typeof(PersonMovement))]
 public class Player : MonoBehaviour
 {
+    private const string KillTag = "KillPlane";
+
+    [SerializeField]
+    private int _killDelay = 3;
+
+    [SerializeField]
+    private float _timeUntilKill;
+
+    [SerializeField]
+    private bool _hasHitWater;
+
+    [SerializeField]
+    private CameraPostProcessing _cameraPostProcessing;
+
     PersonMovement _movement;
     CameraFollow _cameraFollow;
 
-    void Update()
+    private void Start()
+    {
+        InitializeValues();
+    }
+
+    private void Update()
     {
         HandlePlayerInput();
+        UpdatePlayerHealth();
+    }
+
+    private void InitializeValues()
+    {
+        _timeUntilKill = _killDelay;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == KillTag)
+        {
+            _hasHitWater = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == KillTag)
+        {
+            _hasHitWater = false;
+        }
+    }
+
+    private void UpdatePlayerHealth()
+    {
+        if (_hasHitWater)
+        {
+            _timeUntilKill -= Time.deltaTime;
+            _cameraPostProcessing.UpdatePostProcessing();
+
+            if (_timeUntilKill <= 0)
+            {               
+                KillPlayer();
+                _timeUntilKill = _killDelay;
+                _hasHitWater = false;
+            }
+        }
+    }
+
+    private void KillPlayer()
+    {
+        Debug.Log("Die");
     }
 
     void HandlePlayerInput()
@@ -33,5 +101,15 @@ public class Player : MonoBehaviour
 
         _movement.ControlsInput(xComponent + yComponent);
         _movement.SetJumpRequested(Input.GetButtonDown("Jump"));
+    }
+
+    public void TEMP_RetryBTN()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void TEMP_HomeBTN()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 }
