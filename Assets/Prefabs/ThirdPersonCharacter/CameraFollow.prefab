@@ -65,11 +65,11 @@ MonoBehaviour:
   _aliveSaturation: 0
   _aliveAbberation: 0
   _aliveVignetteIntensity: 0
-  _aliveFov: 42
+  _aliveFov: 35
   _dyingSaturation: -100
   _dyingAbberation: 1
   _dyingVignetteIntensity: 0.33
-  _deadFov: 25
+  _deadFov: 20
 --- !u!1 &3920616373113007231
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +130,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 42
+  field of view: 35
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

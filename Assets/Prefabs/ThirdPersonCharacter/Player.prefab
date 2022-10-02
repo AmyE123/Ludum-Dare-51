@@ -10580,17 +10580,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.4
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
@@ -11188,4 +11188,4 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _pusher: {fileID: 6995736114414215581}
-  _runSpeedMultiplier: 0.5
+  _runSpeedMultiplier: 0.4
