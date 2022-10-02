@@ -15,75 +15,97 @@ public class Player : MonoBehaviour
     private const string KillTag = "KillPlane";
 
     [SerializeField]
-    private int _killDelay = 3;
+    private int _drownTimeRequirement = 3;
 
     [SerializeField]
-    private float _timeUntilKill;
+    private float _currentDrownTime;
 
     [SerializeField]
-    private bool _hasHitWater;
+    private float _healthRestoreSpeed = 2;
+
+    [SerializeField]
+    private WaterManager _water;
 
     [SerializeField]
     private CameraPostProcessing _cameraPostProcessing;
 
+    [SerializeField]
+    private GameObject _explodePrefab;
+
+    [SerializeField]
+    private Transform _playerMesh;
+
+    [SerializeField]
+    private float _deathVibrateAmount = 1;
+
+    private bool _isDead;
+
     PersonMovement _movement;
     CameraFollow _cameraFollow;
+    Vector3 _playerMeshRestPos;
 
     private void Start()
     {
         InitializeValues();
+        _playerMeshRestPos = _playerMesh.localPosition;
     }
 
     private void Update()
     {
+        if (_isDead)
+            return;
+
         HandlePlayerInput();
         UpdatePlayerHealth();
     }
 
     private void InitializeValues()
     {
-        _timeUntilKill = _killDelay;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == KillTag)
-        {
-            _hasHitWater = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == KillTag)
-        {
-            _hasHitWater = false;
-        }
+        _currentDrownTime = 0;
     }
 
     private void UpdatePlayerHealth()
     {
-        if (_hasHitWater)
-        {
-            _timeUntilKill -= Time.deltaTime;
-            _cameraPostProcessing.UpdatePostProcessing();
+        float playerBottom = transform.position.y - 0.5f;
+        float waterHeight = _water.WaterHeightExact;
 
-            if (_timeUntilKill <= 0)
-            {               
-                KillPlayer();
-                _timeUntilKill = _killDelay;
-                _hasHitWater = false;
-            }
+        float underwaterPercent = Mathf.Clamp01(waterHeight - playerBottom);
+        Debug.Log($"Underwater percent is {underwaterPercent}");
+
+        if (underwaterPercent > 0)
+            _currentDrownTime += Time.deltaTime * underwaterPercent;
+        else
+            _currentDrownTime -= _healthRestoreSpeed * Time.deltaTime;
+
+        _currentDrownTime = Mathf.Clamp(_currentDrownTime, 0, _drownTimeRequirement);
+        float drownPercent = _currentDrownTime / _drownTimeRequirement;
+
+        _cameraPostProcessing.SetDeadPercent(drownPercent);
+
+        if (_currentDrownTime == 0)
+            _playerMesh.localPosition = _playerMeshRestPos;
+        else
+            _playerMesh.localPosition = _playerMeshRestPos + (Random.insideUnitSphere * _deathVibrateAmount * drownPercent);
+
+        if (_currentDrownTime >= _drownTimeRequirement)
+        {               
+            KillPlayer();
         }
     }
 
     private void KillPlayer()
     {
-        Debug.Log("Die");
+        _isDead = true;
+        gameObject.SetActive(false);
+        GameObject newObj = Instantiate(_explodePrefab, transform.position, transform.rotation);
+        Destroy(newObj, 10);
     }
 
     void HandlePlayerInput()
     {
+        if (_isDead)
+            return;
+
         if (_movement == null)
             _movement = GetComponent<PersonMovement>();
             

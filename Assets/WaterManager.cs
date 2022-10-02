@@ -13,12 +13,12 @@ public class WaterManager : MonoBehaviour
     private Transform _waterTransform;
 
     [SerializeField]
-    private int _waterRiseDelay = 5;
-
-    private bool _isMoving = false;
+    private int _waterRiseDelay = 5;  
 
     [SerializeField]
     private float _timeUntilRise;
+
+    private bool _isMoving = false;
 
     public float TimeUntilRise => Mathf.Clamp(_timeUntilRise, 0, WATER_RISING_TIME);
 
@@ -38,9 +38,6 @@ public class WaterManager : MonoBehaviour
         }
     }
 
-    //[SerializeField]
-    //private GameObject _VFXContainer;
-
     [SerializeField]
     private ParticleController[] _splashVFX;
 
@@ -57,7 +54,6 @@ public class WaterManager : MonoBehaviour
     {
         _timeUntilRise = WATER_RISING_TIME;
         _waterHeight = 0;
-        //_VFXContainer.SetActive(false);
 
         foreach (ParticleController particle in _splashVFX)
         {

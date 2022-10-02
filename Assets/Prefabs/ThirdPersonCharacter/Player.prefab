@@ -9822,7 +9822,6 @@ GameObject:
   - component: {fileID: 7996635678159963006}
   - component: {fileID: 7996635678159963007}
   - component: {fileID: 7996635678159963003}
-  - component: {fileID: 101309771611821844}
   - component: {fileID: 6995736114414215581}
   m_Layer: 6
   m_Name: Player
@@ -9862,10 +9861,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e11dd76e8eb4889a7f73391eb8d3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _killDelay: 3
-  _timeUntilKill: 0
-  _hasHitWater: 0
+  _drownTimeRequirement: 3
+  _currentDrownTime: 0
+  _healthRestoreSpeed: 2
+  _water: {fileID: 0}
   _cameraPostProcessing: {fileID: 0}
+  _explodePrefab: {fileID: 8689063404232214623, guid: c6867532e0400f9499a4b6ccd6f71725,
+    type: 3}
+  _playerMesh: {fileID: 4678868459751304999}
+  _deathVibrateAmount: 0.08
 --- !u!114 &7996635678159963006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9939,22 +9943,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 3
---- !u!114 &101309771611821844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7996635678159963005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0270210ac4d254e05a29865c20aa8c6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _waterManager: {fileID: 0}
-  _resetPositions: []
-  _zKill: -5
-  _setOnStart: 1
 --- !u!114 &6995736114414215581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10592,17 +10580,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4
+      value: 0.90000004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4
+      value: 0.90000004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.4
+      value: 0.90000004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
@@ -10883,7 +10871,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b6b927d8794a1784cb93732f3eb96b32, type: 2}
+      objectReference: {fileID: 2100000, guid: 3a8b1d2c30e27414185ad0d7e848f28b, type: 2}
     - target: {fileID: 749694975856346049, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_Layer
