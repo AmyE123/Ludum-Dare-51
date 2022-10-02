@@ -78,6 +78,11 @@ namespace ThirdPersonMovement
             _anim.SetFloat("runAnimation", newValue);
         }
 
+        public virtual void DoVictoryAnim()
+        {
+
+        }
+
         public virtual void DoDie()
         {
             _anim.ResetTrigger("deathTrigger");

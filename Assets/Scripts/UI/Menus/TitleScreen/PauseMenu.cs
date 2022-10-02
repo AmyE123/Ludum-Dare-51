@@ -56,6 +56,9 @@ public class PauseMenu : MenuScreen
 
     public void HidePauseMenu()
     {
+        if (gameObject.activeInHierarchy == false)
+            return;
+            
         _isVisible = false;
         StartCoroutine(UnpauseGame(0.1f));
 

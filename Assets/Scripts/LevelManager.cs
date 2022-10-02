@@ -15,12 +15,35 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private LevelList _levels;
 
+    [SerializeField]
+    private CameraFollow _camera;
+
+    [SerializeField]
+    private GameUI _gameUI;
+
+    [SerializeField]
+    private WaterManager _water;
+
     private LevelLayout _spawnedLevel;
 
     void Start()
     {
         SpawnLevel(_levels.CurrentLevel);
         _uncollectedCollectables.AddRange(FindObjectsOfType<Collectable>());
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+            OnLevelComplete();
+    }
+
+    public void OnLevelComplete()
+    {
+        _player.WinLevel();
+        _camera.SwapToWinMode();
+        _gameUI.LevelComplete();
+        _water.SetLevelComplete();
     }
 
     private void SpawnLevel(LevelData level)
@@ -54,7 +77,7 @@ public class LevelManager : MonoBehaviour
     {
         if (_uncollectedCollectables.Count <= 0)
         {
-            Debug.Log("Completed Level");
+            OnLevelComplete();
         }
     }
 }
