@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e059bb9c8e76e5b449e1fbac46e57c3a, type: 3}
   m_Name: Level_01
   m_EditorClassIdentifier: 
-  _name: Tutorial
-  _description: Learn how to play the game
+  _name: Flood!
+  _description: 'Learn the basics here and escape the rising water!
+
+'
+  _levelPrefab: {fileID: 0}

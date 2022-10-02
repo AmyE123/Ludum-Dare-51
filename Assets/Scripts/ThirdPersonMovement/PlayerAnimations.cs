@@ -11,6 +11,7 @@ namespace ThirdPersonMovement
         [SerializeField] private Rigidbody _rigidBody;
         [SerializeField] private PersonMovement _playerMove;
         [SerializeField] private AnimationCurve _runMapping;
+        [SerializeField] private PersonPushController _pusher;
         [SerializeField] private float _runSpeedMultiplier = 1f;
 
         public override void DoUpdate()
@@ -27,6 +28,13 @@ namespace ThirdPersonMovement
             SetIsRunning(_playerMove.IsGrounded && vel > 0.1f);
             SetIsGrounded(_playerMove.IsGrounded);
             SetRunAnimation(_runMapping.Evaluate(_rigidBody.velocity.magnitude));
+            SetPushing(_pusher.IsWarmingUp, _pusher.IsMoving);
+        }
+
+        private void SetPushing(bool pushing, bool moving)
+        {
+            _anim.SetBool("isPushing", pushing);
+            _anim.SetBool("isPushMoving", moving);
         }
     }
 }

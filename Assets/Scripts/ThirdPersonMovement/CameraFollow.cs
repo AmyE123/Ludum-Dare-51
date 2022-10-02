@@ -15,8 +15,9 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-        _topLeft = GameObject.FindGameObjectWithTag("TopLeft");
-        _bottomRight = GameObject.FindGameObjectWithTag("BottomRight");
+        // Not sure I like this
+        // _topLeft = GameObject.FindGameObjectWithTag("TopLeft");
+        // _bottomRight = GameObject.FindGameObjectWithTag("BottomRight");
     }
 
     // Update is called once per frame
