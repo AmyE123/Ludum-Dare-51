@@ -10555,6 +10555,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _pusher: {fileID: 0}
   _runSpeedMultiplier: 0.7
 --- !u!4 &5877210468200331083 stripped
 Transform:
@@ -11179,4 +11180,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _pusher: {fileID: 6995736114414215581}
   _runSpeedMultiplier: 0.5

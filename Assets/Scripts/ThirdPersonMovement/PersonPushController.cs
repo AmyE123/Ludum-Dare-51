@@ -20,6 +20,8 @@ namespace ThirdPersonMovement
         private Vector3 _pushDirection;
         private float _pushTime;
         private bool _isLockedIn;
+
+        public bool IsMoving => _pushTime >= _warmUpTime;
         
         public bool IsWarmingUp => _pushTime > 0;
 
@@ -181,12 +183,11 @@ namespace ThirdPersonMovement
 
         public override void HandleFacingDirection()
         {
-            /*
-            if (_isBackwards)
-                transform.rotation = Quaternion.LookRotation(-_activeRail.Forward, Vector3.up);
-            else
-                transform.rotation = Quaternion.LookRotation(_activeRail.Forward, Vector3.up);
-            */
+            if (_pushDirection.magnitude < 0.1)
+                return;
+
+            Quaternion targetRot = Quaternion.LookRotation(_pushDirection, Vector3.up);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, 5 * Time.deltaTime);
         }
     }
 }
