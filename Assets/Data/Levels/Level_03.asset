@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e059bb9c8e76e5b449e1fbac46e57c3a, type: 3}
   m_Name: Level_03
   m_EditorClassIdentifier: 
-  _name: What a Twist
-  _description: Will you be able to work this one out?
+  _name: Roll WIth It
+  _description: These logs float, but you can only roll them
+  _levelPrefab: {fileID: 677463090544946415, guid: 1b8a8dceeec51054b825a35cfcde17e5,
+    type: 3}
