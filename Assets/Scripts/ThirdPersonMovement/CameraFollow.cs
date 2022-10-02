@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -8,7 +9,32 @@ public class CameraFollow : MonoBehaviour
     float _lerpSpeed;
 
     [SerializeField]
+    private Camera _camera;
+
+    [SerializeField]
+    private Transform _tiltTransform;
+
+    [SerializeField]
     Transform _target;
+
+    [Header("Win Information")]
+    [SerializeField]
+    Vector3 _winCameraPos;
+    
+    [SerializeField]
+    Vector3 _winCameraTilt;
+
+    [SerializeField]
+    Vector3 _winCameraOffset;
+
+    [SerializeField]
+    float _winTransitionTime;
+
+    [SerializeField]
+    Ease _winEase = Ease.OutExpo;
+
+    private bool _isWinMode;
+
 
     private GameObject _topLeft;
     private GameObject _bottomRight;
@@ -19,6 +45,17 @@ public class CameraFollow : MonoBehaviour
         // _topLeft = GameObject.FindGameObjectWithTag("TopLeft");
         // _bottomRight = GameObject.FindGameObjectWithTag("BottomRight");
         transform.position = _target.position;
+    }
+
+    public void SwapToWinMode()
+    {
+        if (_isWinMode)
+            return;
+
+        _isWinMode = true;
+        _camera.transform.DOLocalMove(_winCameraPos, _winTransitionTime).SetEase(_winEase);
+        _tiltTransform.transform.DOLocalRotate(_winCameraTilt, _winTransitionTime).SetEase(_winEase);
+        _tiltTransform.transform.DOLocalMove(_winCameraOffset, _winTransitionTime).SetEase(_winEase);
     }
 
     // Update is called once per frame

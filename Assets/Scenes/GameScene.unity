@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh95408
+  m_Name: pb_Mesh218632
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -382,6 +382,9 @@ MonoBehaviour:
   _collectedCollectables: []
   _player: {fileID: 1742244724}
   _levels: {fileID: 11400000, guid: e4f5b8e5ae41fac41bc32c02c8da9dc8, type: 2}
+  _camera: {fileID: 3920616373319858619}
+  _gameUI: {fileID: 339380056}
+  _water: {fileID: 568044020}
 --- !u!4 &166659637
 Transform:
   m_ObjectHideFlags: 0
@@ -397,6 +400,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &339380056 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5187966264023379818, guid: b418ce5b3ee7d284682b06357ebdad27,
+    type: 3}
+  m_PrefabInstance: {fileID: 6702826879599864326}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c7bc0d677c61048aee73354ab04272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &394981772
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +702,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh95424
+  m_Name: pb_Mesh218648
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -917,6 +932,11 @@ PrefabInstance:
       propertyPath: _warmUpTime
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 7606226490544461984, guid: 340bb27224b0a4241a56a91cc837c628,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7996635678159963002, guid: 340bb27224b0a4241a56a91cc837c628,
         type: 3}
       propertyPath: m_RootOrder
@@ -930,12 +950,12 @@ PrefabInstance:
     - target: {fileID: 7996635678159963002, guid: 340bb27224b0a4241a56a91cc837c628,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.59
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7996635678159963002, guid: 340bb27224b0a4241a56a91cc837c628,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.99
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7996635678159963002, guid: 340bb27224b0a4241a56a91cc837c628,
         type: 3}
@@ -1509,7 +1529,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh95462
+  m_Name: pb_Mesh218662
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2373,7 +2393,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh95526
+  m_Name: pb_Mesh218680
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3066,6 +3086,11 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 695947628}
+    - target: {fileID: 3920616374368338998, guid: e3a3042c63952c64c8b302e2214d1111,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 12.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3a3042c63952c64c8b302e2214d1111, type: 3}
 --- !u!114 &3920616373319858617 stripped
@@ -3078,6 +3103,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4721ac5ab3bf5fa44af7f8d38ce4802b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3920616373319858619 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3920616372661525191, guid: e3a3042c63952c64c8b302e2214d1111,
+    type: 3}
+  m_PrefabInstance: {fileID: 3920616373319858616}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b17ce46caa4a41f184f3d0eb5116933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5128268897199161579

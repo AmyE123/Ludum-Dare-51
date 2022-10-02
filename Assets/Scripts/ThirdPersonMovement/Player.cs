@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     private float _deathVibrateAmount = 1;
 
     private bool _isDead;
+    private bool _isFinished;
 
     PersonMovement _movement;
     CameraFollow _cameraFollow;
@@ -52,6 +53,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (_isFinished)
+        {
+            HandleFinished();
+            return;
+        }
+
         if (_isDead)
             return;
 
@@ -59,9 +66,29 @@ public class Player : MonoBehaviour
         UpdatePlayerHealth();
     }
 
+    private void HandleFinished()
+    {
+        if (_currentDrownTime > 0)
+        {
+            _playerMesh.localPosition = _playerMeshRestPos;
+            _currentDrownTime -= Time.deltaTime * _healthRestoreSpeed;
+            _cameraPostProcessing.SetDeadPercent(_currentDrownTime / _drownTimeRequirement);
+        }
+
+
+        Quaternion tgtDir = Quaternion.LookRotation(new Vector3(-0.4f, 0, -1), Vector3.up);
+        transform.rotation = tgtDir;
+    }
+
     private void InitializeValues()
     {
         _currentDrownTime = 0;
+    }
+
+    public void WinLevel()
+    {
+        _isFinished = true;
+        _movement.Animator.DoVictoryAnim();
     }
 
     private void UpdatePlayerHealth()
@@ -124,15 +151,5 @@ public class Player : MonoBehaviour
 
         _movement.ControlsInput(xComponent + yComponent);
         _movement.SetJumpRequested(Input.GetButtonDown("Jump"));
-    }
-
-    public void TEMP_RetryBTN()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void TEMP_HomeBTN()
-    {
-        SceneManager.LoadScene("TitleScene");
     }
 }

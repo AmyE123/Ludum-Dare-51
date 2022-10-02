@@ -10549,6 +10549,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _pusher: {fileID: 0}
   _runSpeedMultiplier: 0.7
+  _faceMesh: {fileID: 0}
 --- !u!4 &5877210468200331083 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2959144493680434560, guid: ebdcd11034b114a0cb1a2535ccbe3685,
@@ -10705,7 +10706,7 @@ PrefabInstance:
     - target: {fileID: -5842670787509776276, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
       propertyPath: m_BlendShapeWeights.Array.data[0]
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5104221557362567003, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
@@ -10846,6 +10847,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -58385531142197912, guid: de3376b3fac5f6b4faa18a0c391d724e,
+        type: 3}
+      propertyPath: m_Name
+      value: RobotFacey
       objectReference: {fileID: 0}
     - target: {fileID: -58385531142197912, guid: de3376b3fac5f6b4faa18a0c391d724e,
         type: 3}
@@ -11189,3 +11195,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   _pusher: {fileID: 6995736114414215581}
   _runSpeedMultiplier: 0.4
+  _faceMesh: {fileID: 7606226490544461984}
+--- !u!137 &7606226490544461984 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5842670787509776276, guid: de3376b3fac5f6b4faa18a0c391d724e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5144262437473355980}
+  m_PrefabAsset: {fileID: 0}

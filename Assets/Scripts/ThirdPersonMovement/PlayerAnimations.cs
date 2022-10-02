@@ -13,11 +13,17 @@ namespace ThirdPersonMovement
         [SerializeField] private AnimationCurve _runMapping;
         [SerializeField] private PersonPushController _pusher;
         [SerializeField] private float _runSpeedMultiplier = 1f;
+        [SerializeField] private SkinnedMeshRenderer _faceMesh;
 
         public override void DoUpdate()
         {
             base.DoUpdate();
             SyncVars();
+        }
+
+        void Start()
+        {
+            SetMouthOpen(false);
         }
 
         void SyncVars()
@@ -36,5 +42,24 @@ namespace ThirdPersonMovement
             _anim.SetBool("isPushing", pushing);
             _anim.SetBool("isPushMoving", moving);
         }
+
+        public void DoFinishWink()
+        {
+            SetRightEyeOpen(true);
+            SetLeftEyeOpen(false);
+            SetMouthOpen(true);
+        }
+
+        public override void DoVictoryAnim()
+        {
+            _anim.ResetTrigger("winTrigger");
+            _anim.SetTrigger("winTrigger");
+        }
+
+        public void SetRightEyeOpen(bool open) => _faceMesh.SetBlendShapeWeight(2, open ? 0 : 100);
+
+        public void SetLeftEyeOpen(bool open) => _faceMesh.SetBlendShapeWeight(1, open ? 0 : 100);
+
+        public void SetMouthOpen(bool open) => _faceMesh.SetBlendShapeWeight(0, open ? 0 : 100);
     }
 }

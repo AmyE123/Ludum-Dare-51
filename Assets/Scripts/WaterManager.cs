@@ -26,6 +26,10 @@ public class WaterManager : MonoBehaviour
 
     public float speedMultiplier = 1;
 
+    private bool _isLevelComplete;
+
+    public void SetLevelComplete() => _isLevelComplete = true;
+
     public float DisplayPercent
     {
         get
@@ -73,7 +77,7 @@ public class WaterManager : MonoBehaviour
 
     private void UpdateWaterTimer()
     {
-        if (PauseMenu.IsGamePaused)
+        if (PauseMenu.IsGamePaused || _isLevelComplete)
             return;
 
         if (_isMoving)

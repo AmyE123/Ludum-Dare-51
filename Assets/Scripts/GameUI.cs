@@ -25,6 +25,11 @@ public class GameUI : MonoBehaviour
 
     }
 
+    public void LevelComplete()
+    {
+        
+    }
+
     public void PlayerDied()
     {
         StartCoroutine(ShowDeathMenu(1f));
