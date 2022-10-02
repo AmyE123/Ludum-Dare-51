@@ -2699,6 +2699,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _pusher: {fileID: 0}
   _runSpeedMultiplier: 0.5
+  _faceMesh: {fileID: 0}
 --- !u!1001 &1875637820787675764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2989,11 +2990,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1587899314746675859, guid: 6de1744cc8c933b478b3638af0133dc3,
         type: 3}
-      propertyPath: _titleScreen
-      value: 
-      objectReference: {fileID: 1943974337190004076}
-    - target: {fileID: 1587899314746675859, guid: 6de1744cc8c933b478b3638af0133dc3,
-        type: 3}
       propertyPath: _screenManager
       value: 
       objectReference: {fileID: 1943974337190004076}
@@ -3111,6 +3107,71 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2478014542896364295, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 306.357
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851755592164400695, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851755592164400695, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851755592164400695, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 131.28598
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851755592164400695, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 93.97313
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851755592164400695, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 65.64299
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851755592164400695, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.986565
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971824507043414975, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971824507043414975, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971824507043414975, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 163.07101
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971824507043414975, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 93.97313
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971824507043414975, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 224.82149
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971824507043414975, guid: 6de1744cc8c933b478b3638af0133dc3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.986565
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6de1744cc8c933b478b3638af0133dc3, type: 3}
@@ -3423,6 +3484,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RootTitleMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 8491749347157031994, guid: 7497ec2f252908247aa4a5a75f54cd92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8491749347157031997, guid: 7497ec2f252908247aa4a5a75f54cd92,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3662,11 +3728,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InstructionsMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 3158452236481308667, guid: a8a87fa20f99cac40806cf227e4e2080,
-        type: 3}
-      propertyPath: _titleScreen
-      value: 
-      objectReference: {fileID: 1943974337190004076}
     - target: {fileID: 3158452236481308667, guid: a8a87fa20f99cac40806cf227e4e2080,
         type: 3}
       propertyPath: _screenManager
