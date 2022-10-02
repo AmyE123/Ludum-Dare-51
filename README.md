@@ -1,12 +1,12 @@
 # Ludum Dare 51
 
 Level complete screen
-Make timer stop when got all collectables
-Turn off the death timer if completed the level
-Animation for level complete
 
 
 Sounds
 Music
 
 model for the collectible
+make the logs keep rolling after falling
+
+stop doing animation events once win kicks in

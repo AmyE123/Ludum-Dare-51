@@ -15,6 +15,10 @@ public class LevelList : ScriptableObject
 
     public LevelData CurrentLevel => _currentLevelIdx < _levels.Length ? _levels[_currentLevelIdx] : null;
 
+    public void IncrementLevel() => _currentLevelIdx ++;
+
+    public bool IsLastLevel => _currentLevelIdx >= _levels.Length - 1;
+
     public void ChooseLevel(LevelData level)
     {
         for (int i=0; i<_levels.Length; i++)

@@ -10,14 +10,18 @@ public class GameUI : MonoBehaviour
     [SerializeField]
     private DeathMenu _deathMenu;
 
+    [SerializeField]
+    private WinMenu _winMenu;
+
     void Start()
     {
         _pauseMenu.SnapClosed();
+        _winMenu.SnapClosed();
     }
 
     void Update()
     {
-        if (_deathMenu.IsOnScreen)
+        if (_deathMenu.IsOnScreen || _winMenu.IsOnScreen)
             return;
             
         if (Input.GetButtonDown("Menu"))
@@ -27,7 +31,8 @@ public class GameUI : MonoBehaviour
 
     public void LevelComplete()
     {
-        
+        _pauseMenu.HidePauseMenu();
+        StartCoroutine(ShowWinMenu(1f));
     }
 
     public void PlayerDied()
@@ -38,9 +43,14 @@ public class GameUI : MonoBehaviour
     private IEnumerator ShowDeathMenu(float delay)
     {
         yield return new WaitForSeconds(delay);
-        
         _pauseMenu.HidePauseMenu();
-
         _deathMenu.ShowDeathMenu();
+    }
+
+    private IEnumerator ShowWinMenu(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        _pauseMenu.HidePauseMenu();
+        _winMenu.ShowWinMenu();
     }
 }
