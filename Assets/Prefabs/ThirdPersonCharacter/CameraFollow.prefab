@@ -61,12 +61,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _volume: {fileID: 239691469}
+  _camera: {fileID: 3920616373113007217}
   _aliveSaturation: 0
   _aliveAbberation: 0
   _aliveVignetteIntensity: 0
+  _aliveFov: 42
   _dyingSaturation: -100
   _dyingAbberation: 1
   _dyingVignetteIntensity: 0.33
+  _deadFov: 25
 --- !u!1 &3920616373113007231
 GameObject:
   m_ObjectHideFlags: 0

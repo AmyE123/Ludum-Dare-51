@@ -32,14 +32,22 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _explodePrefab;
 
+    [SerializeField]
+    private Transform _playerMesh;
+
+    [SerializeField]
+    private float _deathVibrateAmount = 1;
+
     private bool _isDead;
 
     PersonMovement _movement;
     CameraFollow _cameraFollow;
+    Vector3 _playerMeshRestPos;
 
     private void Start()
     {
         InitializeValues();
+        _playerMeshRestPos = _playerMesh.localPosition;
     }
 
     private void Update()
@@ -73,6 +81,11 @@ public class Player : MonoBehaviour
         float drownPercent = _currentDrownTime / _drownTimeRequirement;
 
         _cameraPostProcessing.SetDeadPercent(drownPercent);
+
+        if (_currentDrownTime == 0)
+            _playerMesh.localPosition = _playerMeshRestPos;
+        else
+            _playerMesh.localPosition = _playerMeshRestPos + (Random.insideUnitSphere * _deathVibrateAmount * drownPercent);
 
         if (_currentDrownTime >= _drownTimeRequirement)
         {               

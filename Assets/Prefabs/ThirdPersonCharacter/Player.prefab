@@ -9868,6 +9868,8 @@ MonoBehaviour:
   _cameraPostProcessing: {fileID: 0}
   _explodePrefab: {fileID: 8689063404232214623, guid: c6867532e0400f9499a4b6ccd6f71725,
     type: 3}
+  _playerMesh: {fileID: 4678868459751304999}
+  _deathVibrateAmount: 0.08
 --- !u!114 &7996635678159963006
 MonoBehaviour:
   m_ObjectHideFlags: 0
