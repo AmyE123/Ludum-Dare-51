@@ -147,7 +147,7 @@ public class Pushable : MonoBehaviour
         return true;
     }
 
-    public bool CheckIfCanMove(Vector3 direction)
+    public bool CheckIfCanMove(Vector3 direction, List<Pushable> ignoreList=null)
     {
         PushDirection pushDir = GetPushDirection(direction);
         Bounds bounds = _collider.bounds;
@@ -198,6 +198,15 @@ public class Pushable : MonoBehaviour
         {
             if (Physics.Raycast(mid + v, direction, out RaycastHit hit, 0.8f))
             {
+                if (ignoreList != null && hit.transform.tag == "Pushable")
+                {
+                    Pushable hitPushable = hit.transform.GetComponent<Pushable>();
+                    if (hitPushable != null && ignoreList.Contains(hitPushable))
+                    {
+                        continue;
+                    }
+                }
+
                 return false;
             }
         }

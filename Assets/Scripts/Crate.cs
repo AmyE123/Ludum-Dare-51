@@ -22,14 +22,20 @@ public class Crate : Pushable
         StartCoroutine(PushRoutine(direction, player, movingChildren));
     }
 
-
-    private List<Pushable> GetPushablesThatCanMove(Vector3 direction, List<Pushable> willMove, List<Pushable> wontMove)
+    // This is some recursive nonsense
+    private List<Pushable> GetPushablesThatCanMove(Vector3 direction, List<Pushable> willMove, List<Pushable> wontMove, int depth=0)
     {
+        if (depth > 50)
+        {
+            Debug.LogWarning("Hit a recursion depth of 50 uh oh!");
+            return willMove;
+        }
+
         bool somethingChanged = false;
 
         foreach (Pushable child in willMove)
         {
-            if (child.CheckIfCanMove(direction) == false)
+            if (child.CheckIfCanMove(direction, willMove) == false)
             {
                 wontMove.Add(child);
                 somethingChanged = true;
@@ -41,6 +47,24 @@ public class Crate : Pushable
             if (willMove.Contains(child))
                 willMove.Remove(child);
         }
+
+        foreach (Pushable child in wontMove)
+        {
+            if (child.CheckIfCanMove(direction, willMove))
+            {
+                willMove.Add(child);
+                somethingChanged = true;
+            }
+        }
+
+        foreach (Pushable child in willMove)
+        {
+            if (wontMove.Contains(child))
+                wontMove.Remove(child);
+        }
+
+        if (somethingChanged)
+            GetPushablesThatCanMove(direction, willMove, wontMove, depth + 1);
 
         return willMove;
     }
