@@ -16,6 +16,9 @@ public class GameUI : MonoBehaviour
     [SerializeField]
     private CollectableUI _collectibleUI;
 
+    [SerializeField]
+    private MenuScreenElement[] _gameElements;
+
     public void InitCollectibles(int count)
     {
         _collectibleUI.Init(count);
@@ -34,17 +37,24 @@ public class GameUI : MonoBehaviour
             
         if (Input.GetButtonDown("Menu"))
             _pauseMenu.ToggleMenu();
-
     }
 
     public void LevelComplete()
     {
+        foreach (MenuScreenElement element in _gameElements)
+        {
+            element.AnimateOut();
+        }
         _pauseMenu.HidePauseMenu();
         StartCoroutine(ShowWinMenu(1f));
     }
 
     public void PlayerDied()
     {
+        foreach (MenuScreenElement element in _gameElements)
+        {
+            element.AnimateOut();
+        }
         StartCoroutine(ShowDeathMenu(1f));
     }
 

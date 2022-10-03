@@ -24,6 +24,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private WaterManager _water;
 
+    [SerializeField]
+    private SaveData _saveData;
+
     private LevelLayout _spawnedLevel;
 
     void Start()
@@ -47,6 +50,7 @@ public class LevelManager : MonoBehaviour
         _camera.SwapToWinMode();
         _gameUI.LevelComplete();
         _water.SetLevelComplete();
+        _saveData.CompleteLevel(_levels.CurrentLevel);
     }
 
     private void SpawnLevel(LevelData level)

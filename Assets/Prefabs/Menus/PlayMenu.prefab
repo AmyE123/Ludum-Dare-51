@@ -298,6 +298,7 @@ MonoBehaviour:
   _levels: {fileID: 11400000, guid: e4f5b8e5ae41fac41bc32c02c8da9dc8, type: 2}
   _levelPrefab: {fileID: 965992393634942935, guid: 8556880fe892dfe498e84c20adc6eeb1,
     type: 3}
+  _playerProgress: {fileID: 11400000, guid: a0edab9b28648e04ba2c3d5eaacec751, type: 2}
   _levelParent: {fileID: 1587899316326255461}
 --- !u!114 &2336677861527067582
 MonoBehaviour:

@@ -62,6 +62,7 @@ public class SettingsMenu : MenuScreen
         {
             _resetText.text = "resetting...";
             SaveManager.ResetSave();
+            TransitionManager.LoadScene("TitleScene");
         }
     }
 }

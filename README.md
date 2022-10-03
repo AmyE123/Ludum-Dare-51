@@ -3,19 +3,18 @@
 Sounds
 Music
 
-water pipes water falling
-ui on levels to show completed
-UI on game for menu button
-move game ui out the way on win/loss
-proper button models
-maximum water height for level
-
-better crate model
-
-animation flickers between push and not when against wall (due to cancelling)
+SETTINGS MENU ISN'T BEING APPLIED ON STARTUP?!
 crate goes through wall in prison level
-disable meshrenderer in the way of the player during victory anim
+easy mode to give more time and less time before drowning
 
-add more collectibles to log bridge level
+ART
+better crate model
+water pipes water falling
+proper button models
 
+
+SMALL THINGS
 joystick controls for jump, menu, fastforward
+animation flickers between push and not when against wall (due to cancelling)
+disable meshrenderer in the way of the player during victory anim
+maximum water height for level

@@ -34,6 +34,9 @@ public class LevelSelectCell : MonoBehaviour, IPointerEnterHandler
     [SerializeField]
     private float _submitDownSize = 0.95f;
 
+    [SerializeField]
+    private RectTransform _completeMark;
+
     private ButtonEventForwarder _btn;
     private LevelData _level;
     private LevelSelectMenu _menu;
@@ -50,12 +53,13 @@ public class LevelSelectCell : MonoBehaviour, IPointerEnterHandler
         _contentRect.localScale = new Vector3(_inactiveSize, _inactiveSize, _inactiveSize);
     }
 
-    public void Init(LevelData level, LevelSelectMenu menu)
+    public void Init(LevelData level, LevelSelectMenu menu, bool isComplete)
     {
         _level = level;
         _topText.text = level.LevelName;
         _descText.text = level.Description;
         _headerText.text = level.HeaderText;
+        _completeMark.gameObject.SetActive(isComplete);
         _menu = menu;
     }
 
