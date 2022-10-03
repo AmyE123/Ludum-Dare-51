@@ -8182,6 +8182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPos: {fileID: 9012186812868627263}
+  _maxWaterHeight: 0
 --- !u!1 &9012186812868627256
 GameObject:
   m_ObjectHideFlags: 0
@@ -8873,8 +8874,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: af118fc057e5122459e66f0676c58c49, type: 2}
-  - {fileID: 2100000, guid: 19e341a13a9561342841b701e0968cfa, type: 2}
+  - {fileID: 2100000, guid: 4279de9787aec6144942570b00989e97, type: 2}
+  - {fileID: 2100000, guid: c339f294f6076d443b4e39e429207cac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
