@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e059bb9c8e76e5b449e1fbac46e57c3a, type: 3}
-  m_Name: Level_02
+  m_Name: Tutorial_02
   m_EditorClassIdentifier: 
-  _name: The River
+  _name: River Crossing
   _description: Push the boxes into position before the water gets to them!
+  _headerText: TUTORIAL
   _levelPrefab: {fileID: 677463090544946415, guid: 63a57880af129914cad435e1600a68a9,
     type: 3}

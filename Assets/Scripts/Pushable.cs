@@ -13,12 +13,6 @@ public class Pushable : MonoBehaviour
     [SerializeField]
     protected Collider _collider;
 
-    [SerializeField]
-    private float _fallSpeed = 5;
-
-    [SerializeField]
-    private float _floatSpeed = 5;
-
     protected virtual bool CanMoveLeftRight => true;
     protected virtual bool CanMoveForwardBack => true;
 
@@ -31,7 +25,7 @@ public class Pushable : MonoBehaviour
 
     private WaterManager _water;
 
-    public bool IsFalling => _rb.velocity.y > 0.01f;
+    public bool IsFalling => _rb.velocity.y < -0.01f;
 
     private bool _isInWater;
 
@@ -57,7 +51,6 @@ public class Pushable : MonoBehaviour
             float yPos = _water.WaterHeightExact - _collider.bounds.extents.y + 0.1f;
             transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
         }
-
     }
 
     public virtual void Push(Vector3 direction, PersonPushController player)
@@ -69,6 +62,48 @@ public class Pushable : MonoBehaviour
         }
 
         StartCoroutine(PushRoutine(direction, player));
+    }
+
+    public List<Pushable> CheckPushablesOnTop(List<Pushable> outList=null, List<Pushable> targetList=null)
+    {
+        if (outList == null)
+            outList = new List<Pushable>();
+
+        Bounds bounds = _collider.bounds;
+        List<Vector3> hitOffsets = new List<Vector3>();
+
+        float startX = bounds.extents.x - 0.5f;
+        float startY = bounds.extents.z - 0.5f;
+
+        for (int x=0; x<Mathf.RoundToInt(bounds.extents.x * 2); x++)
+        {
+            for (int y=0; y<Mathf.RoundToInt(bounds.extents.z * 2); y++)
+            {
+                hitOffsets.Add(new Vector3(x-startX, 0, y-startY));
+            }
+        }
+
+        Vector3 mid = transform.position;
+        mid += new Vector3(0, bounds.extents.y-0.1f, 0);
+        
+        foreach (Vector3 v in hitOffsets)
+        {
+            if (Physics.Raycast(mid + v, Vector3.up, out RaycastHit hit, 0.5f))
+            {
+                Pushable p = hit.transform.GetComponent<Pushable>();
+
+                if (targetList != null && targetList.Contains(p) == false)
+                    continue;
+
+                if (p != null && outList.Contains(p) == false)
+                {
+                    outList.Add(p);
+                    p.CheckPushablesOnTop(outList, targetList);
+                }
+            }
+        }
+
+        return outList;
     }
 
     public bool CheckIfShouldFall()
@@ -106,8 +141,11 @@ public class Pushable : MonoBehaviour
         return true;
     }
 
-    protected bool CheckIfCanMove(Vector3 direction)
+    public bool CheckIfCanMove(Vector3 direction, List<Pushable> ignoreList=null)
     {
+        if (_isInWater)
+            return false;
+            
         PushDirection pushDir = GetPushDirection(direction);
         Bounds bounds = _collider.bounds;
         List<Vector3> hitOffsets = new List<Vector3>();
@@ -157,6 +195,15 @@ public class Pushable : MonoBehaviour
         {
             if (Physics.Raycast(mid + v, direction, out RaycastHit hit, 0.8f))
             {
+                if (ignoreList != null && hit.transform.tag == "Pushable")
+                {
+                    Pushable hitPushable = hit.transform.GetComponent<Pushable>();
+                    if (hitPushable != null && ignoreList.Contains(hitPushable))
+                    {
+                        continue;
+                    }
+                }
+
                 return false;
             }
         }
@@ -198,7 +245,7 @@ public class Pushable : MonoBehaviour
         transform.position = new Vector3(xPos, transform.position.y, zPos);
     }
 
-    protected virtual IEnumerator PushRoutine(Vector3 direction, PersonPushController player)
+    protected virtual IEnumerator PushRoutine(Vector3 direction, PersonPushController player, List<Pushable> children=null)
     {
         float distanceToMove = 1f;
         float t = 0;
@@ -215,7 +262,20 @@ public class Pushable : MonoBehaviour
 
             Vector3 amountMoved = transform.position - prevPosition;
             player.PushableMoved(amountMoved);
+
+            if (children != null)
+            {
+                foreach (Pushable child in children)
+                    child.transform.position += amountMoved;
+            }
+
             yield return null;
+        }
+
+        if (children != null)
+        {
+            foreach (Pushable child in children)
+                child.SnapToGrid();
         }
 
         SnapToGrid();

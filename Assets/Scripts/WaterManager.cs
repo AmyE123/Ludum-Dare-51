@@ -18,6 +18,12 @@ public class WaterManager : MonoBehaviour
     [SerializeField]
     private float _timeUntilRise;
 
+    [SerializeField]
+    private Transform _waterTopTransform;
+
+    [SerializeField]
+    private Transform _waterFrontTransform;
+
     private bool _isMoving = false;
 
     public float TimeUntilRise => Mathf.Clamp(_timeUntilRise, 0, WATER_RISING_TIME);
@@ -30,13 +36,26 @@ public class WaterManager : MonoBehaviour
 
     public void SetLevelComplete() => _isLevelComplete = true;
 
+    private int _maxWaterLevel = 99;
+
+    public void SetMaxWaterLevel(int val)
+    {
+        if (val == 0)
+            return;
+
+        _maxWaterLevel = val;
+    }
+    
     public float DisplayPercent
     {
         get
         {
             if (_isMoving)
                 return 0;
-            
+
+            if (_waterHeight >= _maxWaterLevel)
+                return 0;
+
             float timeBetweenRise = WATER_RISING_TIME - _waterRiseDelay;
             return Mathf.Clamp01(_timeUntilRise / timeBetweenRise);
         }
@@ -67,6 +86,9 @@ public class WaterManager : MonoBehaviour
 
     private void Update()
     {
+        float dist = _waterTopTransform.position.y - _waterFrontTransform.position.y;
+        _waterFrontTransform.localScale = new Vector3(1, dist, 1);
+
         UpdateWaterTimer();
 
         foreach (ParticleController particle in _splashVFX)
@@ -80,13 +102,16 @@ public class WaterManager : MonoBehaviour
         if (PauseMenu.IsGamePaused || _isLevelComplete)
             return;
 
+        if (_waterHeight >= _maxWaterLevel)
+            return;
+
         if (_isMoving)
             _timeUntilRise -= Time.deltaTime;
         else
             _timeUntilRise -= Time.deltaTime * speedMultiplier;
 
 
-        if (_timeUntilRise <= 0 && RollingLog.NumberRolling == 0)
+        if (_timeUntilRise <= 0)
         {
             IncrementWaterLevel();
             _timeUntilRise += WATER_RISING_TIME;
@@ -104,18 +129,12 @@ public class WaterManager : MonoBehaviour
 
     public void IncrementWaterLevel()
     {
-        if (RollingLog.NumberRolling != 0)
-            return;
-
         _waterHeight++;
         SetNewWaterLevel();
     }
 
     public void DecrementWaterLevel()
     {
-        if (RollingLog.NumberRolling != 0)
-            return;
-            
         _waterHeight--;
         SetNewWaterLevel();
     }

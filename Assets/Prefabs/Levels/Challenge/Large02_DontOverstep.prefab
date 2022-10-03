@@ -6466,7 +6466,7 @@ GameObject:
   - component: {fileID: 7383907924455542833}
   - component: {fileID: 3268335886197459680}
   m_Layer: 0
-  m_Name: 06_DontOverstep
+  m_Name: Large02_DontOverstep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

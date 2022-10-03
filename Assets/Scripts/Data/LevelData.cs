@@ -12,9 +12,13 @@ public class LevelData : ScriptableObject
     private string _description;
 
     [SerializeField]
+    private string _headerText;
+
+    [SerializeField]
     private LevelLayout _levelPrefab;
 
     public string LevelName => _name;
     public string Description => _description;
+    public string HeaderText => _headerText;
     public GameObject LevelPrefab => _levelPrefab == null ? null : _levelPrefab.gameObject;
 }

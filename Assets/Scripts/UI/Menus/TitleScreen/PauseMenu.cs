@@ -16,6 +16,8 @@ public class PauseMenu : MenuScreen
 
     public static bool IsGamePaused => _isGamePaused;
 
+    public bool IsOnScreen => _isVisible;
+
     public void ToggleMenu()
     {
         if (_isVisible)

@@ -50,6 +50,14 @@ namespace ThirdPersonMovement
             _rb.velocity = Vector3.zero;
         }
 
+        public void CancelSidewaysVelocity()
+        {
+            _move.desiredVelocity = Vector3.zero;
+            Vector3 rbVel = _rb.velocity;
+            rbVel.x = rbVel.z = 0;
+            _rb.velocity = rbVel;
+        }
+
         public void TakeOver(PersonSubController sub, bool becomeGhost)
         {
             _activeSubController = sub;

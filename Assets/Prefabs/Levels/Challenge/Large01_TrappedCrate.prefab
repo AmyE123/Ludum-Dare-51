@@ -2448,7 +2448,7 @@ GameObject:
   - component: {fileID: 2980643211879798}
   - component: {fileID: 2814944491872483825}
   m_Layer: 0
-  m_Name: 05_TrappedCrate
+  m_Name: Large01_TrappedCrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

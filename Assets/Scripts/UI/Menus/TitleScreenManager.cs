@@ -9,7 +9,7 @@ public class TitleScreenManager : ScreenManager
     [SerializeField] private MenuScreen _rootScreen;
     [SerializeField] private MenuScreen _playScreen;
     [SerializeField] private MenuScreen _instructionsScreen;
-    [SerializeField] private MenuScreen _settingsScreen;
+    [SerializeField] private SettingsMenu _settingsScreen;
 
     [Header("More Timing")]
     [Tooltip("How long after scene load should we wait before showing the root menu?")]
@@ -39,5 +39,9 @@ public class TitleScreenManager : ScreenManager
 
     public void ShowInstructionsScreen() => ShowScreen(_instructionsScreen);
 
-    public void ShowSettingsScreen() => ShowScreen(_settingsScreen);
+    public void ShowSettingsScreen() 
+    {
+        _settingsScreen.SyncUI();
+        ShowScreen(_settingsScreen);
+    }
 }

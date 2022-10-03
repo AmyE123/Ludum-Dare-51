@@ -13,14 +13,19 @@ public class LevelSelectMenu : MenuScreen
     private GameObject _levelPrefab;
 
     [SerializeField]
+    private SaveData _playerProgress;
+
+    [SerializeField]
     private RectTransform _levelParent;
 
     void Start()
     {
         foreach (LevelData level in _levels.Levels)
         {
+            bool hasCompleted = _playerProgress.HasCompletedLevel(level);
+
             GameObject newObj = Instantiate(_levelPrefab, _levelParent);
-            newObj.GetComponent<LevelSelectCell>().Init(level, this);
+            newObj.GetComponent<LevelSelectCell>().Init(level, this, hasCompleted);
 
             if (_defaultSelectable == null)
                 _defaultSelectable = newObj.GetComponentInChildren<Button>();

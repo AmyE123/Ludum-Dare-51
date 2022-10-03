@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
             _cameraPostProcessing.SetDeadPercent(_currentDrownTime / _drownTimeRequirement);
         }
 
-
+        _movement.CancelSidewaysVelocity();
         Quaternion tgtDir = Quaternion.LookRotation(new Vector3(-0.4f, 0, -1), Vector3.up);
         transform.rotation = tgtDir;
     }

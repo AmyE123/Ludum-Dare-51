@@ -1,13 +1,20 @@
 # Ludum Dare 51
 
-Level complete screen
-
-
 Sounds
 Music
 
-model for the collectible
-make the logs keep rolling after falling
+crate goes through wall in prison level
+no push logs while theyre moving
+stop logs climbing up when rolling
 
-stop player velocity when winning
-stop doing animation events once win kicks in
+ART
+water pipes water falling
+proper button models
+
+
+SMALL THINGS
+joystick controls for jump, menu, fastforward
+animation flickers between push and not when against wall (due to cancelling)
+disable meshrenderer in the way of the player during victory anim
+maximum water height for level
+easy mode to give more time and less time before drowning

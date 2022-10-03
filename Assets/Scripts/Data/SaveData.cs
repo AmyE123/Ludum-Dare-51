@@ -15,11 +15,25 @@ public class SaveData : ScriptableObject
     [SerializeField, Range(0, 1)]
     private float _musicVolume;
 
+    [SerializeField]
+    private List<string> _completedLevels = new List<string>();
+
     public float SoundVolume => _soundVolume;
     public float MusicVolume => _musicVolume;
 
     public void SetSoundVolume(float val) => _soundVolume = val;
     public void SetMusicVolume(float val) => _musicVolume = val;
+
+    public bool HasCompletedLevel(LevelData level) => _completedLevels.Contains(level.name);
+
+    public void CompleteLevel(LevelData level)
+    {
+        if (_completedLevels.Contains(level.name))
+            return;
+
+        _completedLevels.Add(level.name);
+        SaveToPrefs();
+    }
 
     public void SaveToPrefs()
     {

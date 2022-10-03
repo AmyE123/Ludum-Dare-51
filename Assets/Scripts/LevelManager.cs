@@ -24,18 +24,24 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private WaterManager _water;
 
+    [SerializeField]
+    private SaveData _saveData;
+
     private LevelLayout _spawnedLevel;
 
     void Start()
     {
         SpawnLevel(_levels.CurrentLevel);
         _uncollectedCollectables.AddRange(FindObjectsOfType<Collectable>());
+        _gameUI.InitCollectibles(_uncollectedCollectables.Count);
     }
 
     void Update()
     {
+        #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Q))
             OnLevelComplete();
+        #endif
     }
 
     public void OnLevelComplete()
@@ -44,6 +50,7 @@ public class LevelManager : MonoBehaviour
         _camera.SwapToWinMode();
         _gameUI.LevelComplete();
         _water.SetLevelComplete();
+        _saveData.CompleteLevel(_levels.CurrentLevel);
     }
 
     private void SpawnLevel(LevelData level)
@@ -62,6 +69,7 @@ public class LevelManager : MonoBehaviour
 
         GameObject spawnedObj = Instantiate(level.LevelPrefab);
         _spawnedLevel = spawnedObj.GetComponent<LevelLayout>();
+        _water.SetMaxWaterLevel(_spawnedLevel.MaxWaterHeight);
         
         _player.transform.position = _spawnedLevel.SpawnPosition;
     }
