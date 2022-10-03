@@ -13,12 +13,6 @@ public class Pushable : MonoBehaviour
     [SerializeField]
     protected Collider _collider;
 
-    [SerializeField]
-    private float _fallSpeed = 5;
-
-    [SerializeField]
-    private float _floatSpeed = 5;
-
     protected virtual bool CanMoveLeftRight => true;
     protected virtual bool CanMoveForwardBack => true;
 

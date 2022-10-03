@@ -20,7 +20,6 @@ public class Collectable : MonoBehaviour
     private float _bobPhase;
 
     private LevelManager _levelManager;
-    private bool _isCollected;
 
     private void Update()
     {
@@ -46,7 +45,6 @@ public class Collectable : MonoBehaviour
 
     private void UnspawnCollectable()
     {
-        _isCollected = true;
         transform.DOScale(0, 0.25f).SetEase(Ease.InBack).OnComplete(() => gameObject.SetActive(false));
     }
 }
