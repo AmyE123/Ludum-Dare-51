@@ -12,6 +12,10 @@ public class RollingLog : Pushable
     protected override bool CanMoveLeftRight => _collider.bounds.extents.x < _collider.bounds.extents.z;
     protected override bool CanMoveForwardBack => _collider.bounds.extents.x > _collider.bounds.extents.z;
 
+    public override bool IsMoving => _isMoving;
+
+    private bool _isMoving;
+
     [SerializeField]
     private Transform _logTransform;
 
@@ -54,6 +58,7 @@ public class RollingLog : Pushable
         _numRolling ++;
 
         bool isFirstPush = true;
+        _isMoving = true;
 
         while (t < 1)
         {
@@ -98,5 +103,6 @@ public class RollingLog : Pushable
         }
 
         _numRolling --;
+        _isMoving = false;
     }
 }
