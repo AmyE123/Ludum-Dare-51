@@ -3,7 +3,6 @@
 Sounds
 Music
 
-multipage level select
 water pipes water falling
 ui on levels to show completed
 UI on game for menu button
@@ -18,3 +17,5 @@ crate goes through wall in prison level
 disable meshrenderer in the way of the player during victory anim
 
 add more collectibles to log bridge level
+
+joystick controls for jump, menu, fastforward

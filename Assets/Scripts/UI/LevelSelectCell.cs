@@ -14,6 +14,9 @@ public class LevelSelectCell : MonoBehaviour, IPointerEnterHandler
     private Text _descText;
 
     [SerializeField]
+    private Text _headerText;
+
+    [SerializeField]
     private CanvasGroup _grp;
 
     [SerializeField]
@@ -52,6 +55,7 @@ public class LevelSelectCell : MonoBehaviour, IPointerEnterHandler
         _level = level;
         _topText.text = level.LevelName;
         _descText.text = level.Description;
+        _headerText.text = level.HeaderText;
         _menu = menu;
     }
 

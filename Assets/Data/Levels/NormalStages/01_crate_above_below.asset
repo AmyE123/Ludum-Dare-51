@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e059bb9c8e76e5b449e1fbac46e57c3a, type: 3}
-  m_Name: Log_01
+  m_Name: 01_crate_above_below
   m_EditorClassIdentifier: 
-  _name: Loggy log log
-  _description: bridge it
-  _levelPrefab: {fileID: 677463090544946415, guid: 3bccbd0a445bee34ab4f85cd288a8c9b,
+  _name: Above and Below
+  _description: Make sure to get the lower items before the water reaches it
+  _headerText: STAGE 1
+  _levelPrefab: {fileID: 677463090544946415, guid: 5cb3b566716aa4046bcba77fe8479ace,
     type: 3}
