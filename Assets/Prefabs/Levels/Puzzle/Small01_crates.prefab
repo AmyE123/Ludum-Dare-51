@@ -3061,6 +3061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPos: {fileID: 9012186812868627263}
+  _maxWaterHeight: 0
 --- !u!1 &9012186812868627256
 GameObject:
   m_ObjectHideFlags: 0
