@@ -69,6 +69,7 @@ public class LevelManager : MonoBehaviour
 
         GameObject spawnedObj = Instantiate(level.LevelPrefab);
         _spawnedLevel = spawnedObj.GetComponent<LevelLayout>();
+        _water.SetMaxWaterLevel(_spawnedLevel.MaxWaterHeight);
         
         _player.transform.position = _spawnedLevel.SpawnPosition;
     }

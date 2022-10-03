@@ -36,13 +36,26 @@ public class WaterManager : MonoBehaviour
 
     public void SetLevelComplete() => _isLevelComplete = true;
 
+    private int _maxWaterLevel = 99;
+
+    public void SetMaxWaterLevel(int val)
+    {
+        if (val == 0)
+            return;
+
+        _maxWaterLevel = val;
+    }
+    
     public float DisplayPercent
     {
         get
         {
             if (_isMoving)
                 return 0;
-            
+
+            if (_waterHeight >= _maxWaterLevel)
+                return 0;
+
             float timeBetweenRise = WATER_RISING_TIME - _waterRiseDelay;
             return Mathf.Clamp01(_timeUntilRise / timeBetweenRise);
         }
@@ -87,6 +100,9 @@ public class WaterManager : MonoBehaviour
     private void UpdateWaterTimer()
     {
         if (PauseMenu.IsGamePaused || _isLevelComplete)
+            return;
+
+        if (_waterHeight >= _maxWaterLevel)
             return;
 
         if (_isMoving)

@@ -5,7 +5,6 @@ Music
 
 crate goes through wall in prison level
 no push logs while theyre moving
-max water height
 stop logs climbing up when rolling
 
 ART
