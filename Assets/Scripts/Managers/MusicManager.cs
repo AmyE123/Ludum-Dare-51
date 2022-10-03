@@ -33,12 +33,14 @@ public class MusicManager : MonoBehaviour
 
     private IEnumerator ResetRoutine()
     {
-        for (int i=0; i<200; i++)
+        while (PitchValue < 1)
         {
             PitchValue = Mathf.Lerp(PitchValue, 1, Time.deltaTime * 3);
             LowPassValue = Mathf.Lerp(LowPassValue, 5000, Time.deltaTime * 3);
             yield return null;
         }
+
+        Debug.Log("Restored!");
     }
 
     // Start is called before the first frame update
