@@ -15,6 +15,8 @@ namespace ThirdPersonMovement
         [SerializeField] private float _runSpeedMultiplier = 1f;
         [SerializeField] private SkinnedMeshRenderer _faceMesh;
 
+        private bool _hasWon;
+
         public override void DoUpdate()
         {
             base.DoUpdate();
@@ -28,6 +30,9 @@ namespace ThirdPersonMovement
 
         void SyncVars()
         {
+            if (_hasWon)
+                return;
+            
             float vel = _rigidBody.velocity.magnitude;
 
             SetMoveSpeed(Mathf.Max(vel * _runSpeedMultiplier, 0.1f));
@@ -52,6 +57,8 @@ namespace ThirdPersonMovement
 
         public override void DoVictoryAnim()
         {
+            _hasWon = true;
+            SetPushing(false, false);
             _anim.ResetTrigger("winTrigger");
             _anim.SetTrigger("winTrigger");
         }
