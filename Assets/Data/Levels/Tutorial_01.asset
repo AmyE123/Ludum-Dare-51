@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e059bb9c8e76e5b449e1fbac46e57c3a, type: 3}
-  m_Name: Level_01
+  m_Name: Tutorial_01
   m_EditorClassIdentifier: 
   _name: Flood!
   _description: 'Learn the basics here and escape the rising water!
