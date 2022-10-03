@@ -24,6 +24,12 @@ public class WaterManager : MonoBehaviour
     [SerializeField]
     private Transform _waterFrontTransform;
 
+    [SerializeField]
+    private AudioSource _waterSound;
+
+    [SerializeField]
+    private SaveData _saveData;
+
     private bool _isMoving = false;
 
     public float TimeUntilRise => Mathf.Clamp(_timeUntilRise, 0, WATER_RISING_TIME);
@@ -120,10 +126,13 @@ public class WaterManager : MonoBehaviour
 
     private void SetNewWaterLevel()
     {
-        _isMoving = true;        
+        _isMoving = true;
+
+        _waterSound.DOFade(0.25f * _saveData.SoundVolume, 0.3f);
         _waterTransform.DOLocalMoveY(_waterHeight, _waterRiseDelay).OnComplete(() => 
         {
             _isMoving = false;
+            _waterSound.DOFade(0, 0.3f);
         });
     }
 
