@@ -60,9 +60,15 @@ public class RollingLog : Pushable
 
                 if (CheckIfShouldFall())
                 {
-
+                    yield return new WaitForSeconds(0.1f);
+                    
+                    while (IsFalling)
+                    {
+                        Debug.Log("isFalling");
+                        yield return null;
+                    }
                 }
-                else if (CheckIfCanMove(direction))
+                if (CheckIfCanMove(direction))
                 {
                     startPos = transform.position;
                     endPos = transform.position + (direction * distanceToMove);

@@ -31,7 +31,7 @@ public class Pushable : MonoBehaviour
 
     private WaterManager _water;
 
-    public bool IsFalling => _rb.velocity.y > 0.01f;
+    public bool IsFalling => _rb.velocity.y < -0.01f;
 
     private bool _isInWater;
 
