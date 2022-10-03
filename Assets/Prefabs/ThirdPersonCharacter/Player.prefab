@@ -9870,6 +9870,7 @@ MonoBehaviour:
     type: 3}
   _playerMesh: {fileID: 4678868459751304999}
   _deathVibrateAmount: 0.08
+  _deathSound: {fileID: 8300000, guid: f2c7105c3b5fc0546ae2eccc24a88533, type: 3}
 --- !u!114 &7996635678159963006
 MonoBehaviour:
   m_ObjectHideFlags: 0

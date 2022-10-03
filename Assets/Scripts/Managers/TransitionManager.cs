@@ -60,6 +60,8 @@ public class TransitionManager : MonoBehaviour
         _grp.alpha = 1;
         _grp.blocksRaycasts = true;
 
+        MusicManager.ResetSelf();
+
         StopAllCoroutines();
         StartCoroutine(WaitForTransitionRoutine(sceneName));
     }
