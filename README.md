@@ -1,9 +1,11 @@
 # Ludum Dare 51
 
 stop logs climbing up when rolling
-
-ART
+logs seem to lag when being pushed?
 proper button models
+better contrast
+put water limits on certain levels
+
 
 SMALL THINGS
 animation flickers between push and not when against wall (due to cancelling)
