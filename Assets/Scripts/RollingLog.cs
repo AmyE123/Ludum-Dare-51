@@ -15,6 +15,25 @@ public class RollingLog : Pushable
     [SerializeField]
     private Transform _logTransform;
 
+    public override void Push(Vector3 direction, PersonPushController player)
+    {
+        if (CheckIfCanMove(direction) == false)
+        {
+            player.CancelPushing();
+            return;
+        }
+
+        List<Pushable> children = CheckPushablesOnTop();
+
+        if (children.Count > 0)
+        {
+            player.CancelPushing();
+            return;
+        }
+
+        StartCoroutine(PushRoutine(direction, player));
+    }
+
     protected override IEnumerator PushRoutine(Vector3 direction, PersonPushController player, List<Pushable> children=null)
     {
         float distanceToMove = 1f;
