@@ -115,6 +115,7 @@ MonoBehaviour:
   _childTransform: {fileID: 1323438738432342153}
   _bobAmount: 0.05
   _bobSpeed: 4
+  _collectSound: {fileID: 8300000, guid: 88210ed538f5f434abde61e649676fa4, type: 3}
 --- !u!1001 &1573856303623528290
 PrefabInstance:
   m_ObjectHideFlags: 0

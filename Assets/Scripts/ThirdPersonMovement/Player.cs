@@ -38,6 +38,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _deathVibrateAmount = 1;
 
+    [SerializeField]
+    private AudioClip _deathSound;
+
     private bool _isDead;
     private bool _isFinished;
 
@@ -127,6 +130,9 @@ public class Player : MonoBehaviour
         Destroy(newObj, 10);
 
         FindObjectOfType<GameUI>().PlayerDied();
+        
+        if (_deathSound != null)
+            SfxManager.PlaySound(_deathSound);
     }
 
     void HandlePlayerInput()

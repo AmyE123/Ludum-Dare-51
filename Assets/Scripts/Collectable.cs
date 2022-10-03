@@ -17,6 +17,9 @@ public class Collectable : MonoBehaviour
     [SerializeField]
     private float _bobSpeed;
 
+    [SerializeField]
+    private AudioClip _collectSound;
+
     private float _bobPhase;
 
     private LevelManager _levelManager;
@@ -41,6 +44,9 @@ public class Collectable : MonoBehaviour
             FindObjectOfType<CollectableUI>().OnCollectibleGot();
             _levelManager.Collect(this);
             UnspawnCollectable();
+
+            if (_collectSound != null)
+                SfxManager.PlaySoundRandomPitch(_collectSound, 0.8f, 1.2f);
         }
     }
 
