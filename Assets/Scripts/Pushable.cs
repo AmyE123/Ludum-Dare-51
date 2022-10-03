@@ -143,6 +143,9 @@ public class Pushable : MonoBehaviour
 
     public bool CheckIfCanMove(Vector3 direction, List<Pushable> ignoreList=null)
     {
+        if (_isInWater)
+            return false;
+            
         PushDirection pushDir = GetPushDirection(direction);
         Bounds bounds = _collider.bounds;
         List<Vector3> hitOffsets = new List<Vector3>();

@@ -86,7 +86,7 @@ public class WaterManager : MonoBehaviour
             _timeUntilRise -= Time.deltaTime * speedMultiplier;
 
 
-        if (_timeUntilRise <= 0 && RollingLog.NumberRolling == 0)
+        if (_timeUntilRise <= 0)
         {
             IncrementWaterLevel();
             _timeUntilRise += WATER_RISING_TIME;
@@ -104,18 +104,12 @@ public class WaterManager : MonoBehaviour
 
     public void IncrementWaterLevel()
     {
-        if (RollingLog.NumberRolling != 0)
-            return;
-
         _waterHeight++;
         SetNewWaterLevel();
     }
 
     public void DecrementWaterLevel()
     {
-        if (RollingLog.NumberRolling != 0)
-            return;
-            
         _waterHeight--;
         SetNewWaterLevel();
     }
