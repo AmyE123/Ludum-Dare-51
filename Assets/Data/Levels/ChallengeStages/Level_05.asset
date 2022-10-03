@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Trapped Crate
   _description: This is the only time that prison break is acceptable.
-  _headerText: CHALLENGE
+  _headerText: PLATFORMER 2
   _levelPrefab: {fileID: 2814944491872483825, guid: 686f49625fd1f6745a857525d75e36ac,
     type: 3}

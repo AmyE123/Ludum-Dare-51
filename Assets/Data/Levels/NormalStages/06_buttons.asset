@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Buttons
   _description: bridge it
-  _headerText: STAGE 6
+  _headerText: PLATFORMER 1
   _levelPrefab: {fileID: 677463090544946415, guid: ddaf071c7951b924c9a01b009ba9e1a0,
     type: 3}
