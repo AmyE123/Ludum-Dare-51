@@ -31,6 +31,8 @@ public class Pushable : MonoBehaviour
 
     public bool IsInWater => _isInWater;
 
+    public virtual bool IsMoving => false;
+
     private void Start()
     {
         _rotation = transform.rotation;

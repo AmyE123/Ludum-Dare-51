@@ -99,7 +99,7 @@ namespace ThirdPersonMovement
                 if (_activePushable == null)
                     return;
 
-                if (_activePushable.IsFalling || _activePushable.IsInWater)
+                if (_activePushable.IsFalling || _activePushable.IsInWater  || _activePushable.IsMoving)
                 {
                     _activePushable = null;
                     return;
@@ -151,7 +151,7 @@ namespace ThirdPersonMovement
             _isLockedIn = false;
             Vector3 direction = GetPushDirection();
 
-            if (_activePushable.CheckIfShouldFall())
+            if (_activePushable.CheckIfShouldFall() || _activePushable is RollingLog)
             {
                 CancelPushing();
                 return;
