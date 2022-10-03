@@ -132,7 +132,7 @@ public class WaterManager : MonoBehaviour
         _waterTransform.DOLocalMoveY(_waterHeight, _waterRiseDelay).OnComplete(() => 
         {
             _isMoving = false;
-            _waterSound.DOFade(0, 0.3f);
+            _waterSound.DOFade(0, 0.6f);
         });
     }
 
