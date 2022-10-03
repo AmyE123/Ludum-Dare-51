@@ -34,8 +34,10 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
+        #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Q))
             OnLevelComplete();
+        #endif
     }
 
     public void OnLevelComplete()
