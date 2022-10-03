@@ -11,6 +11,8 @@ move game ui out the way on win/loss
 proper button models
 maximum water height for level
 
+better crate model
+
 animation flickers between push and not when against wall (due to cancelling)
 crate goes through wall in prison level
 disable meshrenderer in the way of the player during victory anim
