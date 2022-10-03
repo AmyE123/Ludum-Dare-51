@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Above and Below
   _description: Make sure to get the lower items before the water reaches it
-  _headerText: STAGE 1
+  _headerText: PUZZLE 1
   _levelPrefab: {fileID: 677463090544946415, guid: 5cb3b566716aa4046bcba77fe8479ace,
     type: 3}

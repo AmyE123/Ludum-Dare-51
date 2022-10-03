@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Box Tower
   _description: Tower!
-  _headerText: STAGE 2
+  _headerText: PUZZLE 2
   _levelPrefab: {fileID: 677463090544946415, guid: 02b23ce5b625aa4499815f211a52fbdd,
     type: 3}

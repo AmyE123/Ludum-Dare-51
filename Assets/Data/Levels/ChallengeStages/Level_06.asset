@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Don't Overstep
   _description: Be careful, you don't want to fall off
-  _headerText: CHALLENGE
+  _headerText: PLATFORMER 3
   _levelPrefab: {fileID: 3268335886197459680, guid: f48fe2a159d42c04d9e3f6ebb8bc4597,
     type: 3}
