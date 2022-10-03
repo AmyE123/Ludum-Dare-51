@@ -30,6 +30,7 @@ public class LevelManager : MonoBehaviour
     {
         SpawnLevel(_levels.CurrentLevel);
         _uncollectedCollectables.AddRange(FindObjectsOfType<Collectable>());
+        _gameUI.InitCollectibles(_uncollectedCollectables.Count);
     }
 
     void Update()

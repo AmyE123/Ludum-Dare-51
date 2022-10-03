@@ -15,3 +15,5 @@ maximum water height for level
 animation flickers between push and not when against wall (due to cancelling)
 crate goes through wall in prison level
 disable meshrenderer in the way of the player during victory anim
+
+add more collectibles to log bridge level

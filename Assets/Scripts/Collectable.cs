@@ -38,6 +38,7 @@ public class Collectable : MonoBehaviour
     {
         if (other.tag == PLAYER_TAG)
         {
+            FindObjectOfType<CollectableUI>().OnCollectibleGot();
             _levelManager.Collect(this);
             UnspawnCollectable();
         }

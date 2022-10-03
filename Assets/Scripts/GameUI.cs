@@ -13,6 +13,14 @@ public class GameUI : MonoBehaviour
     [SerializeField]
     private WinMenu _winMenu;
 
+    [SerializeField]
+    private CollectableUI _collectibleUI;
+
+    public void InitCollectibles(int count)
+    {
+        _collectibleUI.Init(count);
+    }
+
     void Start()
     {
         _pauseMenu.SnapClosed();
