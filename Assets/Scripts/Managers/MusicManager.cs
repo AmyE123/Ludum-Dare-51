@@ -10,8 +10,36 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioSource _musicPlayer;
     [SerializeField] private float _baseVolume = 1;
     [SerializeField] private float _transitionTime = 1;
+    [SerializeField] private AudioLowPassFilter _lowPassFilter;
 
     private static MusicManager _instance;
+
+    public static float LowPassValue
+    { 
+        get => _instance._lowPassFilter.cutoffFrequency;
+        set => _instance._lowPassFilter.cutoffFrequency = value;
+    }
+
+    public static float PitchValue
+    { 
+        get => _instance._musicPlayer.pitch;
+        set => _instance._musicPlayer.pitch = value;
+    }
+
+    public static void ResetSelf()
+    {
+        _instance.StartCoroutine(_instance.ResetRoutine());
+    }
+
+    private IEnumerator ResetRoutine()
+    {
+        for (int i=0; i<200; i++)
+        {
+            PitchValue = Mathf.Lerp(PitchValue, 1, Time.deltaTime * 3);
+            LowPassValue = Mathf.Lerp(LowPassValue, 5000, Time.deltaTime * 3);
+            yield return null;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

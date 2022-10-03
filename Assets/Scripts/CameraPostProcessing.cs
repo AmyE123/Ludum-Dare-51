@@ -27,6 +27,12 @@ public class CameraPostProcessing : MonoBehaviour
     [SerializeField, Range(5, 60)]
     private float _aliveFov = 42;
 
+    [SerializeField]
+    private float _aliveLowPass = 5000;
+
+    [SerializeField]
+    private float _alivePitch = 1;
+
     [Header("Dying")]
     [SerializeField, Range(-100, 100)]
     private float _dyingSaturation;
@@ -39,6 +45,12 @@ public class CameraPostProcessing : MonoBehaviour
     
     [SerializeField, Range(5, 60)]
     private float _deadFov = 42;
+
+    [SerializeField]
+    private float _deadLowPass = 5000;
+
+    [SerializeField]
+    private float _deadPitch = 1;
 
     private void Start()
     {
@@ -55,5 +67,8 @@ public class CameraPostProcessing : MonoBehaviour
 
         float tgtFov = Mathf.Lerp(_aliveFov, _deadFov, percent);
         _camera.fieldOfView = Mathf.Lerp(_camera.fieldOfView, tgtFov, Time.deltaTime * 8);
+
+        MusicManager.LowPassValue = Mathf.Lerp(_aliveLowPass, _deadLowPass, percent);
+        MusicManager.PitchValue = Mathf.Lerp(_alivePitch, _deadPitch, percent);
     }
 }

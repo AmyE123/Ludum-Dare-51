@@ -73,10 +73,14 @@ MonoBehaviour:
   _aliveAbberation: 0
   _aliveVignetteIntensity: 0
   _aliveFov: 35
+  _aliveLowPass: 5000
+  _alivePitch: 1
   _dyingSaturation: -100
   _dyingAbberation: 1
   _dyingVignetteIntensity: 0.33
   _deadFov: 20
+  _deadLowPass: 900
+  _deadPitch: 0.9
 --- !u!1 &3920616373113007231
 GameObject:
   m_ObjectHideFlags: 0
