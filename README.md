@@ -2,14 +2,10 @@
 
 CHANGE THE LEVELS TO PUZZLE/PLATFORMER HEADERS
 
-Sounds
-Music
-
 crate goes through wall in prison level
 stop logs climbing up when rolling
 
 ART
-water pipes water falling
 proper button models
 
 
