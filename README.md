@@ -3,9 +3,8 @@
 Sounds
 Music
 
-SETTINGS MENU ISN'T BEING APPLIED ON STARTUP?!
 crate goes through wall in prison level
-easy mode to give more time and less time before drowning
+
 
 ART
 better crate model
@@ -18,3 +17,4 @@ joystick controls for jump, menu, fastforward
 animation flickers between push and not when against wall (due to cancelling)
 disable meshrenderer in the way of the player during victory anim
 maximum water height for level
+easy mode to give more time and less time before drowning
