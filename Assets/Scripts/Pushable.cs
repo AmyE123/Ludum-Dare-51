@@ -70,7 +70,7 @@ public class Pushable : MonoBehaviour
         StartCoroutine(PushRoutine(direction, player));
     }
 
-    public List<Pushable> CheckPushablesOnTop(List<Pushable> outList=null)
+    public List<Pushable> CheckPushablesOnTop(List<Pushable> outList=null, List<Pushable> targetList=null)
     {
         if (outList == null)
             outList = new List<Pushable>();
@@ -98,10 +98,13 @@ public class Pushable : MonoBehaviour
             {
                 Pushable p = hit.transform.GetComponent<Pushable>();
 
+                if (targetList != null && targetList.Contains(p) == false)
+                    continue;
+
                 if (p != null && outList.Contains(p) == false)
                 {
                     outList.Add(p);
-                    p.CheckPushablesOnTop(outList);
+                    p.CheckPushablesOnTop(outList, targetList);
                 }
             }
         }
@@ -144,7 +147,7 @@ public class Pushable : MonoBehaviour
         return true;
     }
 
-    protected bool CheckIfCanMove(Vector3 direction)
+    public bool CheckIfCanMove(Vector3 direction)
     {
         PushDirection pushDir = GetPushDirection(direction);
         Bounds bounds = _collider.bounds;
