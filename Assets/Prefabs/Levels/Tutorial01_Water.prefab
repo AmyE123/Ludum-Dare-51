@@ -4008,7 +4008,7 @@ GameObject:
   - component: {fileID: 9012186812488067888}
   - component: {fileID: 677463090544946415}
   m_Layer: 0
-  m_Name: 01_Tutorial
+  m_Name: Tutorial01_Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
