@@ -92,7 +92,7 @@ namespace ThirdPersonMovement
             if (direction.magnitude < 0.1f)
                 return;
 
-            if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 1f, _pushableLayer))
+            if (Physics.Raycast(transform.position - new Vector3(0, 0.2f, 0), direction, out RaycastHit hit, 1f, _pushableLayer))
             {
                 _activePushable = hit.transform.gameObject.GetComponent<Pushable>();
 

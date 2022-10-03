@@ -15,3 +15,11 @@ proper button models
 
 animation flickers between push and not when against wall
 crate goes through wall in prison level
+disable meshrenderer in the way of the player during victory anim
+
+crate edgecase 
+
+AABB
+AABB
+ CC
+ CC

@@ -15,7 +15,7 @@ public class RollingLog : Pushable
     [SerializeField]
     private Transform _logTransform;
 
-    protected override IEnumerator PushRoutine(Vector3 direction, PersonPushController player)
+    protected override IEnumerator PushRoutine(Vector3 direction, PersonPushController player, List<Pushable> children=null)
     {
         float distanceToMove = 1f;
         float t = 0;
