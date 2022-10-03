@@ -18,6 +18,12 @@ public class WaterManager : MonoBehaviour
     [SerializeField]
     private float _timeUntilRise;
 
+    [SerializeField]
+    private Transform _waterTopTransform;
+
+    [SerializeField]
+    private Transform _waterFrontTransform;
+
     private bool _isMoving = false;
 
     public float TimeUntilRise => Mathf.Clamp(_timeUntilRise, 0, WATER_RISING_TIME);
@@ -67,6 +73,9 @@ public class WaterManager : MonoBehaviour
 
     private void Update()
     {
+        float dist = _waterTopTransform.position.y - _waterFrontTransform.position.y;
+        _waterFrontTransform.localScale = new Vector3(1, dist, 1);
+
         UpdateWaterTimer();
 
         foreach (ParticleController particle in _splashVFX)
