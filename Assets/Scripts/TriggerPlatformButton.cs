@@ -22,7 +22,6 @@ public class TriggerPlatformButton : MonoBehaviour
     private Transform _platform;
 
     [SerializeField]
-    [Range(0, 10)]
     private int _platformLevel;
 
     [SerializeField]
