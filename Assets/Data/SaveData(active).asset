@@ -15,3 +15,4 @@ MonoBehaviour:
   _saveKey: DefaultSaveData
   _soundVolume: 0.7
   _musicVolume: 0.7
+  _completedLevels: []
