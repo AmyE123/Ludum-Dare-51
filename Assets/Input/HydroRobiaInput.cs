@@ -310,7 +310,7 @@ public partial class @HydroRobiaInput : IInputActionCollection2, IDisposable
                     ""id"": ""809f371f-c5e2-4e7a-83a1-d867598f40dd"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""groups"": """",
                     ""action"": ""Navigate"",
                     ""isComposite"": true,

@@ -24,7 +24,7 @@ public class ControlsManager : MonoBehaviour
         _input.Player.Fastforward.performed += InputSystemEvent;
 
         _input.UI.Enable();
-        _input.UI.Navigate.performed += JoystickEvent;
+        // _input.UI.Navigate.performed += JoystickEvent; (this causes glitches)
         _input.UI.Submit.performed += InputSystemEvent;
 
         OnControlTypeChanged(_currentController);
