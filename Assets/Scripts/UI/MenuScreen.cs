@@ -22,11 +22,14 @@ public class MenuScreen : MonoBehaviour
     
     private CanvasGroup _grp;
     private RectTransform _rect;
+    private HydroRobiaInput _input;
 
     protected void Awake()
     {
         _grp = GetComponent<CanvasGroup>();
         _rect = GetComponent<RectTransform>();
+        _input = new HydroRobiaInput();
+        _input.UI.Enable();
     }
 
     public virtual void BtnPressBack()
@@ -52,7 +55,7 @@ public class MenuScreen : MonoBehaviour
         if (_defaultSelectable == null)
             return;
 
-        Vector2 dirInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 dirInput = _input.UI.Navigate.ReadValue<Vector2>();
 
         GameObject selected = EventSystem.current.currentSelectedGameObject;
         bool isSelectedNull = selected == null || selected.activeInHierarchy == false;
