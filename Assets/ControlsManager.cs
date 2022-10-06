@@ -8,8 +8,10 @@ public enum CurrentControllerType { Unknown, PlayStation, Xbox, Nintendo, Keyboa
 
 public class ControlsManager : MonoBehaviour
 {
-    private CurrentControllerType _currentController = CurrentControllerType.KeyboardMouse;
+    private static CurrentControllerType _currentController = CurrentControllerType.KeyboardMouse;
     private HydroRobiaInput _input;
+
+    public CurrentControllerType CurrentControllerType => _currentController;
 
     private void Start()
     {
@@ -18,18 +20,30 @@ public class ControlsManager : MonoBehaviour
         _input.Player.Enable();
         _input.Player.Jump.performed += InputSystemEvent;
         _input.Player.Menu.performed += InputSystemEvent;
-        _input.Player.Move.performed += InputSystemEvent;
+        _input.Player.Move.performed += JoystickEvent;
         _input.Player.Fastforward.performed += InputSystemEvent;
 
         _input.UI.Enable();
-        _input.UI.Navigate.performed += InputSystemEvent;
+        _input.UI.Navigate.performed += JoystickEvent;
         _input.UI.Submit.performed += InputSystemEvent;
+
+        OnControlTypeChanged(_currentController);
     }
 
     private void OnControlTypeChanged(CurrentControllerType newType)
     {
         _currentController = newType;
-        Debug.Log($"Changed to: {newType}");
+
+        foreach (var visuals in FindObjectsOfType<DynamicControllerVisuals>(true))
+        {
+            visuals.ControllerChanged(newType);
+        }
+    }
+
+    private void JoystickEvent(InputAction.CallbackContext context)
+    {
+        if (context.ReadValue<Vector2>().magnitude > 0.1f)
+            InputSystemEvent(context);
     }
 
     private void InputSystemEvent(InputAction.CallbackContext context)
