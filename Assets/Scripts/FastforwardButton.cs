@@ -24,6 +24,14 @@ public class FastforwardButton : MonoBehaviour, IPointerDownHandler, IPointerUpH
     [SerializeField]
     private bool _isDown;
 
+    private HydroRobiaInput _input;
+
+    void Awake()
+    {
+        _input = new HydroRobiaInput();
+        _input.Player.Enable();;
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         _isDown = true;
@@ -37,7 +45,7 @@ public class FastforwardButton : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     void Update()
     {
-        bool btnPressed = _isDown || Input.GetButton("Fastforward");
+        bool btnPressed = _isDown || _input.Player.Fastforward.IsPressed();
 
         _img.color = btnPressed ? _pressedCol : _notPressedCol;
 

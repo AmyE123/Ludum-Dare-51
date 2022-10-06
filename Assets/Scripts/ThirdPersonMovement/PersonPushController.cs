@@ -24,10 +24,12 @@ namespace ThirdPersonMovement
         public bool IsMoving => _pushTime >= _warmUpTime;
         
         public bool IsWarmingUp => _pushTime > 0;
+        private HydroRobiaInput _input;
 
-        void Start()
+        private void Start()
         {
-
+            _input = new HydroRobiaInput();
+            _input.Player.Enable();
         }
 
         public void StartPushing(Pushable obj)
@@ -76,7 +78,7 @@ namespace ThirdPersonMovement
             if (_player.IsGrounded == false)
                 return Vector3.zero;
             
-            Vector2 dirPressed = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            Vector2 dirPressed = _input.Player.Move.ReadValue<Vector2>();
             dirPressed = Vector3.ClampMagnitude(dirPressed, 1);
 
             if (dirPressed.magnitude < 0.5f)

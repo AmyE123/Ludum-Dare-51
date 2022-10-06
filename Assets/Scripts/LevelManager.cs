@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Keyboard.current.qKey.wasPressedThisFrame)
             OnLevelComplete();
         #endif
     }

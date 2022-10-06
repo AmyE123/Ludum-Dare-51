@@ -19,13 +19,17 @@ public class GameUI : MonoBehaviour
     [SerializeField]
     private MenuScreenElement[] _gameElements;
 
+    private HydroRobiaInput _input;
+
     public void InitCollectibles(int count)
     {
         _collectibleUI.Init(count);
     }
 
     void Start()
-    {
+    {        
+        _input = new HydroRobiaInput();
+        _input.Player.Enable();
         _pauseMenu.SnapClosed();
         _winMenu.SnapClosed();
     }
@@ -35,7 +39,7 @@ public class GameUI : MonoBehaviour
         if (_deathMenu.IsOnScreen || _winMenu.IsOnScreen)
             return;
             
-        if (Input.GetButtonDown("Menu"))
+        if (_input.Player.Menu.WasPressedThisFrame())
             _pauseMenu.ToggleMenu();
     }
 
